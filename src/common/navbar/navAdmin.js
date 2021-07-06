@@ -16,16 +16,16 @@ const NavAdmin = () => {
                     <Nav className="me-auto">
                     </Nav>
                     <Nav className="me-2">
-                        <Nav.Link href="#features">Features</Nav.Link>
+                        <Nav.Link className='' href="#features">Features</Nav.Link>
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
                         <NavDropdown title="Alejandro"  id="collasible-nav-dropdown">
-                            <NavDropdown.Item href=""><FontAwesomeIcon icon={faList} size='lg' className='me-2 size-icon'></FontAwesomeIcon>Categorias</NavDropdown.Item>
-                            <NavDropdown.Item  href=""><FontAwesomeIcon icon={faHamburger} size='lg' className='me-2 size-icon'></FontAwesomeIcon>Productos</NavDropdown.Item>
-                            <NavDropdown.Item  href=""><FontAwesomeIcon icon={faClipboard} size='lg' className='me-2 size-icon'></FontAwesomeIcon>Pedidos</NavDropdown.Item>
-                            <NavDropdown.Item  href=""><FontAwesomeIcon icon={faWaveSquare} size='lg' className='me-2 size-icon'></FontAwesomeIcon>Estadisticas</NavDropdown.Item>
-                            <NavDropdown.Item  href=""><FontAwesomeIcon icon={faUserCog} size='lg' className='me-2 size-icon'></FontAwesomeIcon>Configuracion</NavDropdown.Item>
+                            <NavDropdown.Item href=""><FontAwesomeIcon icon={faList} size='lg' className="me-3"></FontAwesomeIcon>Categorias</NavDropdown.Item>
+                            <NavDropdown.Item href=""><FontAwesomeIcon icon={faHamburger} size='lg' className='me-3'></FontAwesomeIcon>Productos</NavDropdown.Item>
+                            <NavDropdown.Item href=""><FontAwesomeIcon icon={faClipboard} size='lg' className='me-3'></FontAwesomeIcon>Pedidos</NavDropdown.Item>
+                            <NavDropdown.Item href=""><FontAwesomeIcon icon={faWaveSquare} size='lg' className='me-3'></FontAwesomeIcon>Estadisticas</NavDropdown.Item>
+                            <NavDropdown.Item href=""><FontAwesomeIcon icon={faUserCog} size='lg' className='me-3'></FontAwesomeIcon>Configuracion</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item  href=""><FontAwesomeIcon icon={faSignInAlt} size='lg' className='me-2 size-icon'></FontAwesomeIcon>Salir</NavDropdown.Item>
+                            <NavDropdown.Item  href=""><FontAwesomeIcon icon={faSignInAlt} size='lg' className='me-3'></FontAwesomeIcon>Salir</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
