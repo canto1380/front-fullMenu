@@ -1,0 +1,20 @@
+@media (max-width: 500px) {
+    .size-letra{
+        font-size: 25px;
+      }
+    .size-icon{
+        font-size: 20px;
+    }
+  }
+
+ @media (min-width:991px){
+    .size-letra-btn{
+        font-size: 14px;
+    }
+ }
+
+ @media (min-width: 1110px){
+     .size-letra-btn{
+         font-size: 16px;
+     }
+ }
