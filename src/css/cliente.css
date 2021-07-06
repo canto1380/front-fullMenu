@@ -1,0 +1,30 @@
+.nav{
+    position: fixed;
+    width: 100%;
+  top:0;
+  left: 0;
+  z-index: 10;
+}
+.fondo{
+    height: 100vh;
+background-image: url("../img/empa.jpg");
+  background-attachment: fixed;
+  overflow: scroll;
+}
+.box{
+    border-radius: 2px;
+}
+.tarjetas{
+    box-shadow: 5px 5px  10px;
+    background-color: transparent;
+    
+
+}
+.tarjetas:hover{
+    position: relative;
+    bottom: 2px;
+    right: 2px;
+}
+/* .ticket{
+    height: 100vh;
+} */
