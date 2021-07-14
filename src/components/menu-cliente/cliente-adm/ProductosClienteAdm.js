@@ -1,0 +1,45 @@
+import React from 'react';
+import { Container, Row, Col, Button, Form, ListGroup } from 'react-bootstrap';
+import BarraPrincipal from '../../BarraPrincipal';
+import ItemProductos from './ItemProductos';
+import SidebarCliente from '../../SideBarCliente';
+import { Link } from 'react-router-dom';
+
+const ProductosClienteAdm = (props) => {
+    const {inactivo, setInactivo} = props
+
+    return (
+        <Container fluid className='app p-0 text-dark d-flex justify-content-start'>
+        <SidebarCliente
+            inactivo={inactivo}
+            setInactivo={setInactivo}
+        />
+        <div className={`${inactivo ? 'parte2-inactivo' : 'parte2'}`}>
+        <BarraPrincipal/>
+        <Row className="d-flex justify-content-between align-items-center mx-0">
+            <Col className='text-start'>
+                <h3>Productos de Categoria</h3>
+            </Col>
+            <Col className='text-end'>
+                <Link to={'/admin-cliente/productos/nuevoProducto'} type='button' className='btn btn-primary'>Nuevo producto</Link>
+            </Col>
+        </Row>
+        <Row className='d-flex justify-content-end align-items-center mx-0 my-3'>
+            <Col xs={12} md={6} lg={4}>
+            <form className="d-flex">
+                <Form.Control size="sm" type="search" placeholder="Buscar Producto" className='rounded-pill'/>
+                <Button size='sm' className="btn btn-light ms-3 border rounded" type="submit">Buscar</Button>
+            </form>
+            </Col>
+        </Row>
+        <ListGroup>
+            {
+                <ItemProductos/>
+            }
+        </ListGroup>
+        </div>
+        </Container>
+    );
+};
+
+export default ProductosClienteAdm;

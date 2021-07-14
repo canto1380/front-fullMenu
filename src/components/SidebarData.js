@@ -4,31 +4,38 @@ import CategoryIcon from '@material-ui/icons/Category';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
+import SettingsIcon from '@material-ui/icons/Settings';
+
 export const SidebarData =[
     {
         tittle: "Home",
         icon: <HomeIcon />,
-        link:"/"
+        link:"/admin-cliente"
     },
     {
         tittle: "Categorias",
         icon: <CategoryIcon />,
-        link:"/"
+        link:"/categorias"
     },
     {
         tittle: "Productos",
         icon: <FastfoodIcon />,
-        link:"/"
+        link:"/admin-cliente/productos"
     },
     {
         tittle: "Usuarios",
         icon: <PeopleAltIcon />,
-        link:"/"
+        link:"/usuarios"
     },
     {
         tittle: "Pedidos",
         icon: <BorderColorIcon />,
-        link:"/"
+        link:"/pedidos"
+    },
+    {
+        tittle: "Configuracion",
+        icon: <SettingsIcon />,
+        link:"/configuracion"
     }
 ]
 
