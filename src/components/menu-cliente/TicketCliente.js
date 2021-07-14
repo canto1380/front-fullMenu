@@ -15,7 +15,6 @@ const TicketCliente = () => {
       </div>
   </Card.Header>
   <Card.Body>
-      <hr />
       <div className="d-flex justify-content-between">
           <span>Empanadas</span>
           <span>$$$$</span>
@@ -28,20 +27,19 @@ const TicketCliente = () => {
           <span>Empanadas</span>
           <span>$$$$</span>
       </div>
-      <hr />
       <div className="d-flex justify-content-between">
       <h5>TOTAL</h5>
           <h5>$$$$$</h5>
       </div>
   </Card.Body>
   <Card.Footer>
-      <hr />
       <Form>
           <h5>Forma de pago</h5>
           <Form.Group className="my-4">
               <Form.Check type="radio" name="pago" value="efectivo" inline label="Efectivo"></Form.Check>
               <Form.Check type="radio" name="pago" value="tarjeta" inline label="Tarjeta"></Form.Check>
           </Form.Group>
+          <hr />
           <div className="d-flex justify-content-center my-4">
           <Button className="mx-4">Enviar pedido</Button>
             <Button className="mx-4">Cancelar</Button>

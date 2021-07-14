@@ -5,7 +5,7 @@ const CardMenu = (props) => {
     return (
         <Card className="tarjetas text-dark my-3 border-4">
   <Card.Header as="h5">{props.categoria}</Card.Header>
-  <Card.Body className="row">
+  <Card.Body className="row">   
         <div className="col-6">
             Carne
         </div>
