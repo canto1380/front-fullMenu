@@ -8,6 +8,7 @@ import SidebarCliente from './components/SideBarCliente'
 import IndexClienteAdm from './components/menu-cliente/cliente-adm/IndexClienteAdm';
 import ProductosClienteAdm from './components/menu-cliente/cliente-adm/ProductosClienteAdm';
 import AgregarProducto from './components/menu-cliente/cliente-adm/AgregarProducto';
+import EditarProducto from './components/menu-cliente/cliente-adm/EditarProducto';
 function App() {
   const [usuarios, setUsuarios] = useState([])
   const [consultartUsuarios, setConsultarUsuarios] = useState(true)
@@ -41,6 +42,12 @@ function App() {
         </Route>
         <Route exact path='/admin-cliente/productos/nuevoProducto'>
           <AgregarProducto
+            inactivo={inactivo}
+            setInactivo={setInactivo}
+          />
+        </Route>
+        <Route exact path='/admin-cliente/productos/editarProducto'>
+          <EditarProducto
             inactivo={inactivo}
             setInactivo={setInactivo}
           />

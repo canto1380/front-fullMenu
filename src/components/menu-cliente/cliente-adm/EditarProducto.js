@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
-import { Container, Form, InputGroup, Button, Image, Row, Col } from "react-bootstrap";
-import SideBarCliente from "../../SideBarCliente";
-import BarraPrincipal from "../../BarraPrincipal";
+
+import { Container, Button, Row, Col, Form } from 'react-bootstrap';
+import BarraPrincipal from '../../BarraPrincipal';
+import SideBarCliente from '../../SideBarCliente';
 import Swal from "sweetalert2";
 
-const AgregarProducto = (props) => {
-    const { inactivo, setInactivo } = props;
+
+const EditarProducto = (props) => {
+    const {inactivo, setInactivo} = props
     const [producto, setProducto] = useState({
         nombreProducto: "",
         descripcion: "",
@@ -36,7 +38,6 @@ const AgregarProducto = (props) => {
     const [totalValid, setTotalValid] = useState("");
     const [totalInvalid, setTotalInvalid] = useState("");
 
-    const [imagen, setImagen] = useState("");
     /** Expresiones regulares **/
     const expresiones = {
         prod: /^[^\n]{8,20}$/,
@@ -128,63 +129,20 @@ const AgregarProducto = (props) => {
     const handleValores = (e) => {
         setProducto({ ...producto, [e.target.name]: e.target.value })
     };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (validacionProd(producto.nombreProducto) || validacionDescrip(producto.descripcion) || validacionCategoria(producto.categoria) || validacionPrecio(producto.precio) || validacionDesc(producto.descuento) || validacionTotal(total)) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-              Toast.fire({
-                icon: 'error',
-                title: 'Producto no agregado'
-              })
-        } else{
-            const productoNuevo ={
-                nombreProducto : producto.nombreProducto,
-                descripcion: producto.descripcion,
-                categoria: producto.categoria,
-                precio: producto.precio,
-                descuento: producto.descuento,
-                total,
-                foto: producto.foto,
-                publicado: producto.publicado
-            }    
-            console.log(productoNuevo)
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-              Toast.fire({
-                icon: 'success',
-                title: 'Producto agregado'
-              })
-            e.target.reset();
-        } 
-    };
+    const handleSubmit =(e) =>{
+        e.preventDefault()
+    }
 
     return (
-        <Container fluid className="app p-0 text-dark d-flex justify-content-start">
-            <SideBarCliente inactivo={inactivo} setInactivo={setInactivo} />
-            <div className={`${inactivo ? "parte2-inactivo" : "parte2"}`}>
-                <BarraPrincipal />
+        <Container fluid className='app p-0 text-dark d-flex justify-content-start'>
+            <SideBarCliente
+                inactivo={inactivo}
+                setInactivo={setInactivo}
+            />
+            <div className={`${inactivo ? 'parte2-inactivo': 'parte2'}`}>
+                <BarraPrincipal/>
                 <div className='px-5'>
-                    <h3>Nuevo producto</h3>
+                    <h3>Editar producto</h3>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>
@@ -279,7 +237,7 @@ const AgregarProducto = (props) => {
                                     onChange={handleValores}
                                     placeholder="10" />
                                 <Form.Text className="text-muted">
-                                    El numero ingresado es el % de descuento (de 0 a 99)
+                                    El numero ingresado es el % de descuento
                                 </Form.Text>
                             </Form.Group>
                             <Form.Group as={Col} xs={12} lg={4} className="mb-3" controlId="formBasicEmail">
@@ -292,8 +250,8 @@ const AgregarProducto = (props) => {
                                     onBlur={validacionTotal}
                                     isValid={totalValid}
                                     isInvalid={totalInvalid}
-                                    value={producto.precio-(producto.precio * producto.descuento)/100}
-                                    onSelect={(e) => setTotal(producto.precio-(producto.precio * producto.descuento)/100)}
+                                    value={producto.precio * producto.descuento}
+                                    onSelect={(e) => setTotal(producto.precio * producto.descuento)}
                                     />
                                 <Form.Text className="text-muted">
                                     Precio total con descuento
@@ -324,15 +282,17 @@ const AgregarProducto = (props) => {
                         </Form.Group>
                         <div className='d-flex justify-content-start align-items-center'>
                             <Button variant="primary" type="submit">
-                                Agregar producto
+                                Editar producto
                             </Button>
                             <Link className='btn btn-secondary ms-3' to={'/admin-cliente/productos'}>Volver</Link>
                         </div>
                     </Form>
                 </div>
             </div>
+                
+            
         </Container>
     );
 };
 
-export default AgregarProducto;
+export default EditarProducto;

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit, faStar, faUpload} from '@fortawesome/free-solid-svg-icons';
 import '../../../css/clienteAdm.css'
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 const BotoneraProductos = () => {
@@ -40,7 +41,7 @@ const BotoneraProductos = () => {
             <Button title='Destacar' className='p-1 bg-light text-dark border-1 border-dark'>
                 <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
             </Button>
-            <Button title='Editar' className='p-1 ms-1 bg-light text-dark border-1 border-dark'>
+            <Button as={Link} to={'/admin-cliente/productos/editarProducto'} title='Editar' className='p-1 ms-1 bg-light text-dark border-1 border-dark'>
                 <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
             </Button> 
             <Button title='Eliminar' onClick={()=>eliminarProducto()} className='p-1 ms-1 bg-light text-dark border-1 border-dark'>
