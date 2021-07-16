@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 const ProductosClienteAdm = (props) => {
     const {inactivo, setInactivo} = props
 
+    
+
     return (
         <Container fluid className='app p-0 text-dark d-flex justify-content-start'>
         <SidebarCliente
@@ -18,7 +20,7 @@ const ProductosClienteAdm = (props) => {
         <BarraPrincipal/>
         <Row className="d-flex justify-content-between align-items-center mx-0">
             <Col className='text-start'>
-                <h3>Productos de Categoria</h3>
+                <h4>Productos de Categoria</h4>
             </Col>
             <Col className='text-end'>
                 <Link to={'/admin-cliente/productos/nuevoProducto'} type='button' className='btn btn-primary'>Nuevo producto</Link>

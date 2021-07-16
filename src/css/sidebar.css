@@ -10,7 +10,7 @@
     background-color: rgb(46, 53, 63);
 }
 .sidebar-inactivo{
-    width: 5%;
+    width: 6%;
     height: 100%;
     background-color: rgb(46, 53, 63);
 }
@@ -53,11 +53,12 @@
     height: 100%;
     width: 82%;
     border: 2px solid blue;
+    overflow: scroll;
 }
 .parte2-inactivo{
-    width: 95%;
+    width: 94%;
     height: 100%;
-    border: 2px solid red
+    overflow: scroll;
 }
 
 
@@ -65,12 +66,78 @@
 @media (max-width: 992px) {
     .sidebar{
         height: 100%;
-        width: 20%;
-        background-color: rgb(46, 53, 63);
+        width: 23%;
+    }
+    .parte2{
+        width: 77%;
+        height: 100%;
     }
     .sidebar-inactivo{
-        width: 6%;
+        width: 8%;
         height: 100%;
-        background-color: rgb(46, 53, 63);
+    }
+    .parte2-inactivo{
+        width: 92%;
+        height: 100%;
+    }
+  }
+
+  @media(max-width:710px){
+    .sidebar{
+        height: 100%;
+        width: 25%;
+    }
+    .parte2{
+        width: 75%;
+        height: 100%;
+    }
+    .sidebar-inactivo{
+        width: 10%;
+        height: 100%;
+    }
+    .parte2-inactivo{
+        width: 90%;
+        height: 100%;
+    }
+  }
+  @media(max-width: 650px){
+    .sidebar{
+        height: 100%;
+        width: 40%;
+        z-index: 1000;
+        background-color:rgb(46, 53, 63); ;
+    }
+    .parte2{
+        width: 100%;
+        position:fixed;
+    }
+    .sidebar-inactivo{
+        width: 10%;
+        height: 100%;
+    }
+    .parte2-inactivo{
+        width: 90%;
+        height: 100%;
+    }
+  }
+
+  @media(max-width: 500px){
+    .sidebar{
+        height: 100%;
+        width: 60%;
+        z-index: 1000;
+        background-color:rgb(46, 53, 63); ;
+    }
+    .parte2{
+        width: 100%;
+        position:fixed;
+    }
+    .sidebar-inactivo{
+        width: 13%;
+        height: 100%;
+    }
+    .parte2-inactivo{
+        width: 87%;
+        height: 100%;
     }
   }

@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsDown, faThumbsUp, faCommentDots } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
+import '../css/adminPrincipal.css'
 
 const BarraPrincipal = () => {
     return (
