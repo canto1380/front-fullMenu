@@ -11,7 +11,7 @@ const BotoneraProductos = () => {
 
     const eliminarProducto =(id) =>{
         Swal.fire({
-            title: "Estas seguro de borrar esta noticia?",
+            title: "Estas seguro de borrar este producto?",
             text: "Una vez eliminado no se puede volver atrás!",
             icon: "warning",
             showCancelButton: true,
@@ -25,7 +25,7 @@ const BotoneraProductos = () => {
               try {
                 
                   Swal.fire(
-                    "Producto Eliminada!",
+                    "Producto Eliminado!",
                     "El producto se elimino correctamente",
                     "success"
                   );

@@ -9,6 +9,10 @@ import IndexClienteAdm from './components/menu-cliente/cliente-adm/IndexClienteA
 import ProductosClienteAdm from './components/menu-cliente/cliente-adm/ProductosClienteAdm';
 import AgregarProducto from './components/menu-cliente/cliente-adm/AgregarProducto';
 import EditarProducto from './components/menu-cliente/cliente-adm/EditarProducto';
+import UsuariosAdmin from './components/menu-cliente/cliente-adm/UsuariosAdmin';
+import EditarUsuarioEncargado from './components/menu-cliente/cliente-adm/EditarUsuarioEncargado';
+import AgregarUsuarioEncargado from './components/menu-cliente/cliente-adm/AgregarUsuarioEncargado'
+
 function App() {
   const [usuarios, setUsuarios] = useState([])
   const [consultartUsuarios, setConsultarUsuarios] = useState(true)
@@ -48,6 +52,24 @@ function App() {
         </Route>
         <Route exact path='/admin-cliente/productos/editarProducto'>
           <EditarProducto
+            inactivo={inactivo}
+            setInactivo={setInactivo}
+          />
+        </Route>
+        <Route exact path='/admin-cliente/usuarios'>
+          <UsuariosAdmin
+          inactivo={inactivo}
+          setInactivo={setInactivo}
+          />
+        </Route>
+        <Route exact path='/admin-cliente/usuarios/editarEncargado'>
+          <EditarUsuarioEncargado
+            inactivo={inactivo}
+            setInactivo={setInactivo}
+          />
+        </Route>
+        <Route exact path='/admin-cliente/usuarios/nuevoEncargado'>
+          <AgregarUsuarioEncargado
             inactivo={inactivo}
             setInactivo={setInactivo}
           />

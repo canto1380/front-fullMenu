@@ -25,7 +25,7 @@ export const SidebarData =[
     {
         tittle: "Usuarios",
         icon: <PeopleAltIcon />,
-        link:"/usuarios"
+        link:"/admin-cliente/usuarios"
     },
     {
         tittle: "Pedidos",
