@@ -3,35 +3,16 @@ import '../../css/adminPrincipal.css'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import NavAdmin from '../../common/navbar/NavAdmin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsDown, faThumbsUp, faCommentDots, faCheckCircle, faUserCog } from '@fortawesome/free-regular-svg-icons';
+import {  faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import BarraPrincipal from '../BarraPrincipal';
 
 const AdminPrincipal = () => {
     return (
         <>
             <NavAdmin />
             <Container fluid className='my-3 px-4'>
+                <BarraPrincipal/>
                 <Row >
-                    <Col xs={6}>
-                        <div>
-                            <h1 className='size-letra'>El Paisa Empanadas</h1>
-                        </div>
-                    </Col>
-                    <Col className="d-flex justify-content-end align-items-center" xs={6}>
-                        <div className="align-middle">
-                            <span><FontAwesomeIcon icon={faThumbsUp} size='2x' className='me-2 size-icon'></FontAwesomeIcon></span>
-                            <span>9</span>
-
-                        </div>
-                        <div className="mx-4">
-                            <span><FontAwesomeIcon icon={faThumbsDown} size='2x' className='me-2 size-icon'></FontAwesomeIcon></span>
-                            <span>10</span>
-                        </div>
-                        <div>
-                            <span><FontAwesomeIcon icon={faCommentDots} size='2x' className='me-2 size-icon'></FontAwesomeIcon></span>
-                            <span>100</span>
-                        </div>
-                    </Col>
-                    <hr className='my-2' />
                     <div>
                         <h3 className='mb-3'>Pedidos pendientes</h3>
                     </div>
