@@ -12,6 +12,7 @@ import EditarProducto from './components/menu-cliente/cliente-adm/EditarProducto
 import UsuariosAdmin from './components/menu-cliente/cliente-adm/UsuariosAdmin';
 import EditarUsuarioEncargado from './components/menu-cliente/cliente-adm/EditarUsuarioEncargado';
 import AgregarUsuarioEncargado from './components/menu-cliente/cliente-adm/AgregarUsuarioEncargado'
+import PedidosHistorial from './components/menu-cliente/cliente-adm/PedidosHistorial';
 
 function App() {
   const [usuarios, setUsuarios] = useState([])
@@ -70,6 +71,12 @@ function App() {
         </Route>
         <Route exact path='/admin-cliente/usuarios/nuevoEncargado'>
           <AgregarUsuarioEncargado
+            inactivo={inactivo}
+            setInactivo={setInactivo}
+          />
+        </Route>
+        <Route exact path='/admin-cliente/pedidos'>
+          <PedidosHistorial
             inactivo={inactivo}
             setInactivo={setInactivo}
           />

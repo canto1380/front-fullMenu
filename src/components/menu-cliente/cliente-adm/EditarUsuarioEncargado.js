@@ -118,7 +118,7 @@ const EditarUsuarioEncargado = (props) => {
             <div className={`${inactivo ? 'parte2-inactivo' : 'parte2'}`}>
                 <BarraPrincipal />
                 <div className='px-5'>
-                <h3>Nuevo encargado</h3>
+                <h3>Editar encargado</h3>
                 <Form onSubmit={handleSubmit}>
                     <Row>
                         <Form.Group as={Col} xs={12} md={6} className="mb-3" controlId="formBasicEmail">

@@ -28,9 +28,6 @@ const ProductosClienteAdm = (props) => {
                 <Row className='d-flex justify-content-end align-items-center mx-0 my-3'>
                     <Col xs={12} md={6} lg={4} className=''>
                         <Form.Group className="mb-0 d-flex">
-                                {/* <Form.Label className='mb-0 me-2'>
-                                <FontAwesomeIcon icon={faFilter}></FontAwesomeIcon>
-                                </Form.Label> */}
                             <Form.Control
                                 as="select"
                                 size='sm'

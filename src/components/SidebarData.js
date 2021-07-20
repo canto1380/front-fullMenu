@@ -30,7 +30,7 @@ export const SidebarData =[
     {
         tittle: "Pedidos",
         icon: <BorderColorIcon />,
-        link:"/pedidos"
+        link:"/admin-cliente/pedidos"
     },
     {
         tittle: "Configuracion",
