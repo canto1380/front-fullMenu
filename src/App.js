@@ -26,6 +26,7 @@ function App() {
   //Categorias
   const [categorias, setCategorias] = useState([]);
   const [consultarCat, setConsultarCat]= useState(true);
+  console.log(categorias)
 
   const consultarAPICat = async() =>{
     try{
@@ -103,7 +104,7 @@ function App() {
             setInactivo={setInactivo}
           />
         </Route>
-        <Route exact path='/adminMenu/categorias'>
+        <Route exact path='/admin-cliente/categorias'>
           <SidebarCliente/>
           <AdminMenuCategoria consultarCat={consultarCat} setConsultarCat={setConsultarCat} categorias={categorias}/>
         </Route>

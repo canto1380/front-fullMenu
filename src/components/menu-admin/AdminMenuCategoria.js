@@ -17,6 +17,7 @@ const AdminMenuCategoria = (props) => {
     
     const handleSubmit = async (e)=>{
       e.preventDefault();
+      console.log("desde submit")
       try {
         const config = {
           method: "POST",
@@ -35,8 +36,6 @@ const AdminMenuCategoria = (props) => {
         console.log(error)
       }
     }
-    // console.log(props.consultarCat)
-    // console.log(props.categorias)
 
 
     return (
