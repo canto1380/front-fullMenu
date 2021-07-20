@@ -19,6 +19,15 @@ const ClientePrincipal = () => {
                 <CardMenu categoria="Empandadas"></CardMenu>
                 <CardMenu categoria="Bebida"></CardMenu>
                 <CardMenu categoria="Postre"></CardMenu>
+                <CardMenu categoria="Empandadas"></CardMenu>
+                <CardMenu categoria="Bebida"></CardMenu>
+                <CardMenu categoria="Postre"></CardMenu>
+                <CardMenu categoria="Empandadas"></CardMenu>
+                <CardMenu categoria="Bebida"></CardMenu>
+                <CardMenu categoria="Postre"></CardMenu>
+                <CardMenu categoria="Empandadas"></CardMenu>
+                <CardMenu categoria="Bebida"></CardMenu>
+                <CardMenu categoria="Postre"></CardMenu>
                 </div>
                 <div className="col sm-12 col-md-6">
                     <TicketCliente></TicketCliente>

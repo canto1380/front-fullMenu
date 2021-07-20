@@ -1,31 +1,88 @@
 {
-    "usuario": [
-        {
-          "id": 1,
-          "nombre": "admin",
-          "apellido": "admin",
-          "email": "atapenalba16@gmail.com",
-          "clave": "123456",
-          "telefono": "3815555555",
-          "tipoUsuario": "admin"
-        },
-        {
-          "id": 2,
-          "nombre": "Alejandro",
-          "apellido": "Povina",
-          "email": "alejandro.povina@gmail.com",
-          "clave": "123456",
-          "telefono": "381-5555555",
-          "tipoUsuario": "admiinCliente"
-        },
-        {
-          "id": 3,
-          "nombre": "Maria",
-          "apellido": "Paz",
-          "email": "atapenalba916@gmail.com",
-          "clave": "123456",
-          "telefono": "381-5555555",
-          "tipoUsuario": "encargado"
-        }
-      ]
+  "users": [
+    {
+      "id": 1,
+      "nombre": "Alejandro",
+      "apellido": "Poviña",
+      "clave": "admin123456",
+      "tipoUsuario": "admin",
+      "celular": "3816448281"
+    }
+  ],
+  "negocios": [
+    {
+      "id": 1,
+      "nombreNegocio": "El Paisa"
+    }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "nombreCategoria": "Empanadas"
+    },
+    {
+      "nombreCategoria": "menu",
+      "id": 3
+    },
+    {
+      "nombreCategoria": "comidas",
+      "id": 14
+    },
+    {
+      "nombreCategoria": "Postres",
+      "id": 15
+    }
+  ],
+  "productos": [
+    {
+      "id": 1,
+      "nombreProducto": "empanada de carne",
+      "descripcion": "empanada de carne",
+      "precio": 60,
+      "destacado": false,
+      "descuento": 0,
+      "categoria": "Empanadas"
+    }
+  ],
+  "pedidos": [
+    {
+      "id": 1,
+      "idMesa": "Mesa1",
+      "numPedido": 123,
+      "fecha": "",
+      "hora": "",
+      "descuento": 0,
+      "total": 700,
+      "formaPago": "efectivo",
+      "tipoPedido": "local"
+    }
+  ],
+  "clientes": [
+    {
+      "id": 1,
+      "nombre": "alejandro",
+      "apellido": "peñalba",
+      "email": "ap@gmail.com",
+      "clave": "123456",
+      "tarjeta": ""
+    }
+  ],
+  "tarjetas": [
+    {
+      "": ""
+    }
+  ],
+  "mesas": [
+    {
+      "id": "1",
+      "numeroMesa": 4,
+      "libre": true
+    }
+  ],
+  "historialPedidos": [
+    {
+      "id": "",
+      "idPedido": "123456"
+    }
+  ]
 }
