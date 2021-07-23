@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Container, Form, InputGroup, Button, Image, Row, Col } from "react-bootstrap";
 import SideBarCliente from "../../SideBarCliente";
 import BarraPrincipal from "../../BarraPrincipal";
 import Swal from "sweetalert2";
 
 const AgregarProducto = (props) => {
-    const { inactivo, setInactivo } = props;
+    const { inactivo, setInactivo, setConsultarProductos } = props;
     const [producto, setProducto] = useState({
         nombreProducto: "",
         descripcion: "",
@@ -128,8 +128,10 @@ const AgregarProducto = (props) => {
     const handleValores = (e) => {
         setProducto({ ...producto, [e.target.name]: e.target.value })
     };
+    const URL = process.env.REACT_APP_API_URL + "/productos"
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async(e) => {
         e.preventDefault();
         if (validacionProd(producto.nombreProducto) || validacionDescrip(producto.descripcion) || validacionCategoria(producto.categoria) || validacionPrecio(producto.precio) || validacionDesc(producto.descuento) || validacionTotal(total)) {
             const Toast = Swal.mixin({
@@ -159,22 +161,43 @@ const AgregarProducto = (props) => {
                 publicado: producto.publicado
             }    
             console.log(productoNuevo)
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+            try {
+                const config = {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body : JSON.stringify(productoNuevo)
+                };
+                const res =await fetch (URL, config);
+                if(res.status ===201){
+                  console.log(res);
+                //   setConsultarCat(true);
+                //   console.log(consultarCat);
+
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Producto agregado'
+                  })
+                  setConsultarProductos(true)
+                 props.history.push('/admin-cliente/productos') 
                 }
-              })
-              Toast.fire({
-                icon: 'success',
-                title: 'Producto agregado'
-              })
-            e.target.reset();
+              }catch(error){
+                console.log(error)
+              }
+
+    
         } 
     };
 
@@ -335,4 +358,4 @@ const AgregarProducto = (props) => {
     );
 };
 
-export default AgregarProducto;
+export default withRouter(AgregarProducto);

@@ -4,10 +4,14 @@ import { Form, Row, Col } from 'react-bootstrap';
 const FiltrosPedidos = (props) => {
 const {filtradoEncargado, setFiltradoEncargado} =props
 const [filtroEncargado, setFiltroEncargado] = useState('')
+const [monto, setMonto] = useState()
 console.log(filtroEncargado)
 
 const valorEncargado =(e) =>{
   setFiltroEncargado(e.target.value)
+}
+const valorMonto = (e) =>{
+  setMonto(e.target.value)
 }
 const pedidosData =[
   {
@@ -30,19 +34,46 @@ let array=[];
 const filtrarEncargado =() =>{
   console.log('adentro')
   const listaFiltrada = pedidosData.map((val)=>{
-    let m = val.Encargado.toLowerCase();
-    if(m.indexOf(filtroEncargado.toLowerCase()) !== -1){
+    let e = val.Encargado.toLowerCase();
+    let m = val.monto;
+    let f = val.Fecha;
+
+    if(e.indexOf(filtroEncargado.toLowerCase()) !== -1){
       array.push(val.nPedido)
-      // setFiltradoEncargado(array)
-    } else {
-      console.log('no')
     }
+    
+    // if(m>=1 && m<=1000){
+    //   console.log(m)
+    //   array.push(val.nPedido)
+    // } else if(m>1000 && m<=1600){
+    //   console.log(m)
+    //   array.push(val.nPedido)
+    // } else if(m>1601 && m<=2000){
+    //   console.log(m)
+    //   array.push(val.nPedido)
+    // } else if(m>2001 && m<=3000){
+    //   console.log(m)
+    //   array.push(val.nPedido)
+    // } else {
+    //   console.log(m)
+    //   array.push(val.nPedido)
+    // }
+
   }
   )
 }
+// const filtrarMonto =()=>{
+//   const listaFiltrada = pedidosData.map((val)=>{
+//     let m = val.monto;
+//     if(m>=1 && m<=1000){
+//       array.push(val.nPedido)
+//     }
+//     // if(m.indexOf(filtroMonto))
+//   })
+// }
 filtrarEncargado();
+// filtrarMonto()
 console.log(array)
-console.log(filtradoEncargado)
   return (
     <Row className='border border-2 py-3 mx-2 mb-3'>
       <Col xs={12} md={4} className='border-end border-2'>
@@ -52,7 +83,7 @@ console.log(filtradoEncargado)
         >
           <b>Monto</b>
         </Form.Label>
-        <select className="form-select" aria-label="Default select example" >
+        <select className="form-select" onKeyUp={filtrarEncargado} onChange={valorMonto} aria-label="Default select example" >
           <option defaultValue>Rango</option>
           <option value="1">Entre $1 - $1000</option>
           <option value="2">Entre $1001 - $1600</option>

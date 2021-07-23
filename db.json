@@ -31,6 +31,10 @@
     {
       "nombreCategoria": "Postres",
       "id": 15
+    },
+    {
+      "nombreCategoria": "kjhkjhkj",
+      "id": 16
     }
   ],
   "productos": [
@@ -41,7 +45,87 @@
       "precio": 60,
       "destacado": false,
       "descuento": 0,
-      "categoria": "Empanadas"
+      "categoria": "Empanadas",
+      "foto": "cdsafdsfds",
+      "publicado": true,
+      "total": 60
+    },
+    {
+      "nombreProducto": "Coca Cola x 1.50 lts",
+      "descripcion": "fkjldhljksdfs",
+      "categoria": "Categoria 1",
+      "precio": "1500",
+      "descuento": "5",
+      "total": 1425,
+      "foto": "",
+      "publicado": true,
+      "id": 4
+    },
+    {
+      "nombreProducto": "Andes Roja x 750ml",
+      "descripcion": "",
+      "categoria": "Categoria 2",
+      "precio": "700",
+      "descuento": "0",
+      "total": 700,
+      "foto": "",
+      "publicado": true,
+      "id": 5
+    },
+    {
+      "nombreProducto": "Papas fritas",
+      "descripcion": "Porcion de papas fritas",
+      "categoria": "Categoria 2",
+      "precio": "950",
+      "descuento": "10",
+      "total": 855,
+      "foto": "",
+      "publicado": true,
+      "id": 6
+    },
+    {
+      "nombreProducto": "Papas fritas xl",
+      "descripcion": "Porcion de papas fritas",
+      "categoria": "Categoria 3",
+      "precio": "1550",
+      "descuento": "10",
+      "total": 855,
+      "foto": "",
+      "publicado": true,
+      "id": 7
+    },
+    {
+      "nombreProducto": "Pizza comun x4 porc",
+      "descripcion": "",
+      "categoria": "Categoria 2",
+      "precio": "979",
+      "descuento": "0",
+      "total": 979,
+      "foto": "",
+      "publicado": true,
+      "id": 8
+    },
+    {
+      "nombreProducto": "Pizza comun x8 porc",
+      "descripcion": "",
+      "categoria": "Categoria 3",
+      "precio": "1700",
+      "descuento": "5",
+      "total": 1615,
+      "foto": "",
+      "publicado": true,
+      "id": 9
+    },
+    {
+      "nombreProducto": "Agua mineral x1000ml",
+      "descripcion": "",
+      "categoria": "Categoria 1",
+      "precio": "250",
+      "descuento": "0",
+      "total": 250,
+      "foto": "",
+      "publicado": true,
+      "id": 10
     }
   ],
   "pedidos": [

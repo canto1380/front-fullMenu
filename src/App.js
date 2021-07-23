@@ -16,19 +16,21 @@ import AgregarUsuarioEncargado from './components/menu-cliente/cliente-adm/Agreg
 import PedidosHistorial from './components/menu-cliente/cliente-adm/PedidosHistorial';
 
 function App() {
+  /***** PROPS *****/
   //usuarios
   const [usuarios, setUsuarios] = useState([])
   const [consultartUsuarios, setConsultarUsuarios] = useState(true)
-
-  const[inactivo, setInactivo] = useState(false)
-
-  console.log(usuarios)
-
   //Categorias
   const [categorias, setCategorias] = useState([]);
   const [consultarCat, setConsultarCat]= useState(true);
-  console.log(categorias)
+  //Productos
+  const [productos, setProductos] = useState([]);
+  const [consultarProductos, setConsultarProductos]= useState(true);
+  //Sidebar
+  const[inactivo, setInactivo] = useState(false)
 
+  /***** Consultas API *****/
+  //Categorias
   const consultarAPICat = async() =>{
     try{
       const res = await fetch(
@@ -44,13 +46,32 @@ function App() {
         console.log(error)
       }
     };
-
   useEffect(()=>{
     if(consultarCat){
       consultarAPICat();
     } 
   },[consultarCat]);
 
+  //Productos
+  const consultarAPIProductos = async()=>{
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_API_URL + "/productos"
+      );
+      const infoProductos = await res.json();
+      if(res.status === 200){
+        setProductos(infoProductos)
+        setConsultarProductos(false)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(()=>{
+    if(consultarProductos){
+      consultarAPIProductos();
+    }
+  },[consultarProductos]);
 
   return (
     <Router>
@@ -73,12 +94,17 @@ function App() {
           <ProductosClienteAdm
             inactivo={inactivo}
             setInactivo={setInactivo}
+            productos={productos}
+            consultarProductos={consultarProductos}
+            setConsultarProductos={setConsultarProductos}
           />
         </Route>
         <Route exact path='/admin-cliente/productos/nuevoProducto'>
           <AgregarProducto
             inactivo={inactivo}
             setInactivo={setInactivo}
+            setConsultarProductos={setConsultarProductos}
+
           />
         </Route>
         <Route exact path='/admin-cliente/productos/editarProducto'>

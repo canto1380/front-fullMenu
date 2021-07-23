@@ -7,9 +7,12 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 
-const BotoneraProductos = () => {
-
-    const eliminarProducto =(id) =>{
+const BotoneraProductos = (props) => {
+  const {productos, setConsultarProductos} = props
+  const eliminarProducto =(id) =>{
+        console.log(id)
+        const URL = process.env.REACT_APP_API_URL+ `/productos/${id}`
+        console.log(URL)
         Swal.fire({
             title: "Estas seguro de borrar este producto?",
             text: "Una vez eliminado no se puede volver atrás!",
@@ -21,14 +24,21 @@ const BotoneraProductos = () => {
             cancelButtonText: "Cancelar",
           }).then(async (result) => {
             if (result.isConfirmed) {
-              
               try {
-                
-                  Swal.fire(
-                    "Producto Eliminado!",
-                    "El producto se elimino correctamente",
-                    "success"
-                  );
+                  const res = await fetch(URL, {
+                    method: 'DELETE',
+                    headers:{
+                      "Content-Type":"application-json"
+                    }
+                  })
+                  if(res.status === 200){
+                    Swal.fire(
+                      "Producto Eliminado!",
+                      "El producto se elimino correctamente",
+                      "success"
+                    );
+                    setConsultarProductos(true)
+                  }
               } catch (error) {
                 console.log(error);
               }
@@ -44,7 +54,7 @@ const BotoneraProductos = () => {
             <Button as={Link} to={'/admin-cliente/productos/editarProducto'} title='Editar' className='p-1 ms-1 bg-light text-dark border-1 border-dark'>
                 <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
             </Button> 
-            <Button title='Eliminar' onClick={()=>eliminarProducto()} className='p-1 ms-1 bg-light text-dark border-1 border-dark'>
+            <Button title='Eliminar' onClick={()=>eliminarProducto(productos.id)} className='p-1 ms-1 bg-light text-dark border-1 border-dark'>
                 <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
             </Button>
             <Button title='Publicar' className='p-1 ms-1 bg-light text-dark border-1 border-dark'>

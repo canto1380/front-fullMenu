@@ -40,7 +40,7 @@ const ItemHistPedidos = () => {
                             <td>{val.Encargado}</td>
                             <td>{val.Fecha}</td>
                             <td>{val.monto}</td>
-                            <td><BotoneraPedidos/></td>
+                            <td className='text-end'><BotoneraPedidos/></td>
                         </tr>
                     )   
                 })}

@@ -117,7 +117,7 @@ const AgregarUsuarioEncargado = (props) => {
         if(validacionApe(user.apellido) || validacionNom(user.nombre) || validacionEmail(user.email) || validacionClave(user.clave) || validacionCel(user.celular)){
             const Toast = Swal.mixin({
                 toast: true,
-                position: 'top-end',
+                position: 'center',
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
@@ -134,7 +134,7 @@ const AgregarUsuarioEncargado = (props) => {
             console.log(user)
             const Toast = Swal.mixin({
                 toast: true,
-                position: 'top-end',
+                position: 'center',
                 showConfirmButton: false,
                 timer: 1500,
                 timerProgressBar: true,
