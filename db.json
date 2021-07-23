@@ -31,6 +31,15 @@
       "clave": "kljaskljdklajs",
       "celular": "5848949848",
       "id": 6
+    },
+    {
+      "nombre": "Alejandro",
+      "apellido": "Penalba",
+      "email": "atapenalba16@gmail.com",
+      "clave": "1231321321",
+      "celular": "3815479768",
+      "tipoUsuario": "encargado",
+      "id": 7
     }
   ],
   "negocios": [
@@ -41,11 +50,11 @@
   ],
   "categorias": [
     {
-      "nombreCategoria": "comidas",
+      "nombreCategoria": "Comidas",
       "id": 14
     },
     {
-      "nombreCategoria": "ensaladas",
+      "nombreCategoria": "Ensaladas",
       "id": 16
     },
     {
@@ -61,7 +70,7 @@
       "precio": 60,
       "destacado": false,
       "descuento": 0,
-      "categoria": "Empanadas",
+      "categoria": "Ensaladas",
       "foto": "cdsafdsfds",
       "publicado": true,
       "total": 60
@@ -69,7 +78,7 @@
     {
       "nombreProducto": "Coca Cola x 1.50 lts",
       "descripcion": "fkjldhljksdfs",
-      "categoria": "Categoria 1",
+      "categoria": "Comidas",
       "precio": "1500",
       "descuento": "5",
       "total": 1425,
@@ -80,7 +89,7 @@
     {
       "nombreProducto": "Andes Roja x 750ml",
       "descripcion": "",
-      "categoria": "Categoria 2",
+      "categoria": "Ensaladas",
       "precio": "700",
       "descuento": "0",
       "total": 700,
@@ -91,7 +100,7 @@
     {
       "nombreProducto": "Papas fritas",
       "descripcion": "Porcion de papas fritas",
-      "categoria": "Categoria 2",
+      "categoria": "Ensaladas",
       "precio": "950",
       "descuento": "10",
       "total": 855,
@@ -102,7 +111,7 @@
     {
       "nombreProducto": "Papas fritas xl",
       "descripcion": "Porcion de papas fritas",
-      "categoria": "Categoria 3",
+      "categoria": "Minutas",
       "precio": "1550",
       "descuento": "10",
       "total": 855,
@@ -113,7 +122,7 @@
     {
       "nombreProducto": "Pizza comun x4 porc",
       "descripcion": "",
-      "categoria": "Categoria 2",
+      "categoria": "Comidas",
       "precio": "979",
       "descuento": "0",
       "total": 979,
@@ -124,7 +133,7 @@
     {
       "nombreProducto": "Pizza comun x8 porc",
       "descripcion": "",
-      "categoria": "Categoria 3",
+      "categoria": "Ensaladas",
       "precio": "1700",
       "descuento": "5",
       "total": 1615,
@@ -135,13 +144,68 @@
     {
       "nombreProducto": "Agua mineral x1000ml",
       "descripcion": "",
-      "categoria": "Categoria 1",
+      "categoria": "Comidas",
       "precio": "250",
       "descuento": "0",
       "total": 250,
       "foto": "",
       "publicado": true,
       "id": 10
+    },
+    {
+      "nombreProducto": "Coca Cola Zero",
+      "descripcion": "Light",
+      "categoria": "Minutas",
+      "precio": "260",
+      "descuento": "0",
+      "total": 260,
+      "foto": "",
+      "publicado": true,
+      "id": 11
+    },
+    {
+      "nombreProducto": "Coca Cola x 1.50 lts",
+      "descripcion": "",
+      "categoria": "Comidas",
+      "precio": "290",
+      "descuento": "0",
+      "total": 290,
+      "foto": "",
+      "publicado": true,
+      "id": 12
+    },
+    {
+      "nombreProducto": "Red Label",
+      "descripcion": "Medida de wiskhy",
+      "categoria": "Ensaladas",
+      "precio": "590",
+      "descuento": "5",
+      "total": 560.5,
+      "foto": "",
+      "publicado": true,
+      "id": 13
+    },
+    {
+      "nombreProducto": "dsadasdas",
+      "descripcion": "fsfsdijhfsd",
+      "categoria": "Minutas",
+      "precio": "1522",
+      "descuento": "10",
+      "total": 1369.8,
+      "foto": "",
+      "publicado": true,
+      "id": 14
+    },
+    {
+      "nombreProducto": "dasdsadsa",
+      "descripcion": "sadasdas",
+      "categoria": "Minutas",
+      "precio": "2132",
+      "descuento": "50",
+      "total": 1066,
+      "foto": "",
+      "publicado": true,
+      "id": 15
     }
   ],
   "pedidos": [

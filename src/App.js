@@ -3,23 +3,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import AdminPrincipal from './components/menu-admin/AdminPrincipal';
-import ClientePrincipal from './components/menu-cliente/ClientePrincipal';
-import AdminMenuCategoria from './components/menu-cliente/cliente-adm/AdminMenuCategoria';
-import IndexClienteAdm from './components/menu-cliente/cliente-adm/IndexClienteAdm';
-import ProductosClienteAdm from './components/menu-cliente/cliente-adm/ProductosClienteAdm';
-import AgregarProducto from './components/menu-cliente/cliente-adm/AgregarProducto';
-import EditarProducto from './components/menu-cliente/cliente-adm/EditarProducto';
-import UsuariosAdmin from './components/menu-cliente/cliente-adm/UsuariosAdmin';
-import EditarUsuarioEncargado from './components/menu-cliente/cliente-adm/EditarUsuarioEncargado';
-import AgregarUsuarioEncargado from './components/menu-cliente/cliente-adm/AgregarUsuarioEncargado'
-import PedidosHistorial from './components/menu-cliente/cliente-adm/PedidosHistorial';
+import ClientePrincipal from './components/cliente-interfaces/ClientePrincipal';
+import AdminMenuCategoria from './components/menu-cliente/categorias/AdminMenuCategoria';
+import IndexClienteAdm from './components/menu-cliente/IndexClienteAdm';
+import ProductosClienteAdm from './components/menu-cliente/productos/ProductosClienteAdm';
+import AgregarProducto from './components/menu-cliente/productos/AgregarProducto';
+import EditarProducto from './components/menu-cliente/productos/EditarProducto';
+import UsuariosAdmin from './components/menu-cliente/usuarios/UsuariosAdmin';
+import EditarUsuarioEncargado from './components/menu-cliente/usuarios/EditarUsuarioEncargado';
+import AgregarUsuarioEncargado from './components/menu-cliente/usuarios/AgregarUsuarioEncargado'
+import PedidosHistorial from './components/menu-cliente/pedidos/PedidosHistorial';
 
 
 function App() {
   /***** PROPS *****/
   //usuarios
   const [usuarios, setUsuarios] = useState([])
-  const [consultartUsuarios, setConsultarUsuarios] = useState(true)
+  const [consultarUsuarios, setConsultarUsuarios] = useState(true)
   //Categorias
   const [categorias, setCategorias] = useState([]);
   const [consultarCat, setConsultarCat]= useState(true);
@@ -95,6 +95,7 @@ function App() {
             inactivo={inactivo}
             setInactivo={setInactivo}
             productos={productos}
+            categorias={categorias}
             consultarProductos={consultarProductos}
             setConsultarProductos={setConsultarProductos}
           />
@@ -104,7 +105,7 @@ function App() {
             inactivo={inactivo}
             setInactivo={setInactivo}
             setConsultarProductos={setConsultarProductos}
-
+            categorias={categorias}
           />
         </Route>
         <Route exact path='/admin-cliente/productos/editarProducto'>

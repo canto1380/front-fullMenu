@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Button, Card, Modal, Form, ListGroup, Container} from "react-bootstrap";
 import BarraPrincipal from '../../BarraPrincipal';
-import ItemCategorias from '../../menu-admin/ItemCategorias';
+import ItemCategorias from './ItemCategorias';
 import SideBarCliente from '../../SideBarCliente';
 
 

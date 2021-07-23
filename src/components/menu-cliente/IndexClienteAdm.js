@@ -1,8 +1,8 @@
 import React from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
-import SidebarCliente from '../../SideBarCliente';
-import '../../../css/sidebar.css'
-import BarraPrincipal from '../../BarraPrincipal';
+import SidebarCliente from '../SideBarCliente';
+import '../../css/sidebar.css'
+import BarraPrincipal from '../BarraPrincipal';
 
 const IndexClienteAdm = (props) => {
     const {inactivo, setInactivo} = props

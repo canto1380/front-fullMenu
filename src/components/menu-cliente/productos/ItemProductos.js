@@ -4,7 +4,6 @@ import BotoneraProductos from './BotoneraProductos';
 
 const ItemProductos = (props) => {
     const { productos, buscador, productosFiltrados } = props
-    console.log(buscador)
     return (
         <>
             <Table responsive striped bordered hover size='sm'>

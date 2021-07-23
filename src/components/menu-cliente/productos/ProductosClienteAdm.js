@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import '../../../css/clienteAdm.css'
 
 const ProductosClienteAdm = (props) => {
-    const { inactivo, setInactivo, productos, consultarProductos, setConsultarProductos } = props
+    const { inactivo, setInactivo, productos, setConsultarProductos, categorias } = props
     const [cat, setCat] = useState('')
     const [buscador, setBuscador] = useState([])
 
@@ -17,7 +17,6 @@ const ProductosClienteAdm = (props) => {
     const valorBuscador =(e) =>{
         setBuscador(e.target.value)
     }
-
     let productosFiltrados = productos.filter((a)=> a.categoria === cat);
     const filtrar =() =>{
         let filtroBuscador = productos.filter((item)=>{
@@ -29,7 +28,6 @@ const ProductosClienteAdm = (props) => {
         });
         setBuscador(filtroBuscador)
     }
-    console.log(buscador)
     return (
         <Container fluid className='app p-0 text-dark d-flex justify-content-start'>
             <SidebarCliente
@@ -55,9 +53,10 @@ const ProductosClienteAdm = (props) => {
                                 className='form-select'
                             >
                                 <option>Seleccione una categoría</option>
-                                <option value='Categoria 1'>Categoria 1</option>
-                                <option value='Categoria 2'>Categoria 2</option>
-                                <option value='Categoria 3'>Categoria 3</option>
+                                {categorias.map((cat)=>(
+                                        <option value={cat.nombreCategoria} key={cat.id}>{cat.nombreCategoria}</option>
+                                    ))}
+                                
                             </select>
                         </Form.Group>
                     </Col>

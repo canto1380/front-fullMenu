@@ -6,7 +6,8 @@ import BarraPrincipal from "../../BarraPrincipal";
 import Swal from "sweetalert2";
 
 const AgregarProducto = (props) => {
-    const { inactivo, setInactivo, setConsultarProductos } = props;
+    const { inactivo, setInactivo, setConsultarProductos, categorias } = props;
+    console.log(categorias)
     const [producto, setProducto] = useState({
         nombreProducto: "",
         descripcion: "",
@@ -17,6 +18,7 @@ const AgregarProducto = (props) => {
         publicado: true
     })
     const [total,setTotal]= useState('')
+
     /** State Validaciones de feed */
     const [prodValid, setProdValid] = useState("");
     const [prodInvalid, setProdInvalid] = useState("");
@@ -43,7 +45,9 @@ const AgregarProducto = (props) => {
         descrip: /^[^\n]{0,100}$/,
         cat: /^[^\n]{0,30}$/,
         pre: /^[0-9]{1,4}$/,
-        desc: /^[0-9]{0,2}$/
+        desc: /^[0-9]{0,2}$/,
+        tot: /^\w{1,2}/
+
     }
     const scrollToTop = () => {
         window.scrollTo({
@@ -115,7 +119,7 @@ const AgregarProducto = (props) => {
     const validacionTotal = () => {
         setTotalValid('')
         setTotalInvalid('')
-        const t = expresiones.pre
+        const t = expresiones.tot
         if (t.test(total)) {
             setTotalValid(true)
             return false
@@ -257,14 +261,13 @@ const AgregarProducto = (props) => {
                             <Form.Label>
                                 <b>Categoria</b>
                             </Form.Label>
-                            <Form.Control
-                                onBlur={validacionCategoria}
-                                isValid={catValid}
-                                isInvalid={catInvalid}
-                                type="text"
-                                name='categoria'
-                                onChange={handleValores}
-                                disabled />
+                            <Form.Group className='mb-0 d-flex'>
+                                <select className='form-select' onChange={handleValores} name="categoria" >
+                                    {categorias.map((cat)=>(
+                                        <option key={cat.id}>{cat.nombreCategoria}</option>
+                                    ))}
+                                </select>
+                            </Form.Group>
                         </Form.Group>
                         <Row>
                             <Form.Group as={Col} xs={12} md={6} lg={4} className="mb-3" controlId="formBasicEmail">
@@ -272,13 +275,13 @@ const AgregarProducto = (props) => {
                                     <b>Precio</b>
                                 </Form.Label>
                                 <Form.Control
-                                    type="number"
+                                    type="tel"
                                     onBlur={validacionPrecio}
                                     isValid={precioValid}
                                     isInvalid={precioInvalid}
                                     required
                                     placeholder="$"
-                                    
+                                    maxLength={4}
                                     name='precio'
                                     onChange={handleValores} />
                                     <Form.Control.Feedback
@@ -294,12 +297,13 @@ const AgregarProducto = (props) => {
                                     <b>Descuento</b>
                                 </Form.Label>
                                 <Form.Control
-                                    type="number"
+                                    type="tel"
                                     name='descuento'
                                     onBlur={validacionDesc}
                                     isValid={descValid}
                                     isInvalid={descInvalid}
                                     onChange={handleValores}
+                                    maxLength={2}
                                     placeholder="10" />
                                 <Form.Text className="text-muted">
                                     El numero ingresado es el % de descuento (de 0 a 99)
@@ -310,11 +314,12 @@ const AgregarProducto = (props) => {
                                     <b>Total</b>
                                 </Form.Label>
                                 <Form.Control
-                                    type="number"
+                                    type="tel"
                                     readOnly
                                     onBlur={validacionTotal}
                                     isValid={totalValid}
                                     isInvalid={totalInvalid}
+                                    
                                     value={producto.precio-(producto.precio * producto.descuento)/100}
                                     onSelect={(e) => setTotal(producto.precio-(producto.precio * producto.descuento)/100)}
                                     />

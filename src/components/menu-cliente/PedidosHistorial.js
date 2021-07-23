@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
 import BarraPrincipal from '../../BarraPrincipal';
 import SideBarCliente from '../../SideBarCliente';
 import ItemHistPedidos from './ItemHistPedidos';
-import FiltrosPedidos from './modalFiltros/FiltrosPedidos';
+import FiltrosPedidos from './filtrosPedidos/FiltrosPedidos';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const PedidosHistorial = (props) => {
