@@ -1,12 +1,36 @@
 {
   "users": [
     {
-      "id": 1,
       "nombre": "Alejandro",
       "apellido": "Poviña",
+      "email": "alejandropovina@gmail.com",
       "clave": "admin123456",
-      "tipoUsuario": "admin",
-      "celular": "3816448281"
+      "celular": "3816448281",
+      "id": 1
+    },
+    {
+      "nombre": "Luis",
+      "apellido": "Perez",
+      "email": "akjsd@kjlads.com",
+      "clave": "akljdkaksldjkl",
+      "celular": "8765161651",
+      "id": 3
+    },
+    {
+      "nombre": "Martin Jose",
+      "apellido": "Juarez",
+      "email": "asdasda@jhgk.com",
+      "clave": "asdasdasdasdas",
+      "celular": "4187474156",
+      "id": 4
+    },
+    {
+      "nombre": "Lucas",
+      "apellido": "Rojas",
+      "email": "mkl@lkjaf.com",
+      "clave": "kljaskljdklajs",
+      "celular": "5848949848",
+      "id": 6
     }
   ],
   "negocios": [
@@ -17,20 +41,16 @@
   ],
   "categorias": [
     {
-      "id": 1,
-      "nombreCategoria": "Empanadas"
-    },
-    {
-      "nombreCategoria": "menu",
-      "id": 3
-    },
-    {
       "nombreCategoria": "comidas",
       "id": 14
     },
     {
-      "nombreCategoria": "Postres",
-      "id": 15
+      "nombreCategoria": "ensaladas",
+      "id": 16
+    },
+    {
+      "nombreCategoria": "Minutas",
+      "id": 17
     }
   ],
   "productos": [

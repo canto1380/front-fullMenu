@@ -6,7 +6,7 @@ import {Link}  from 'react-router-dom'
 import ItemUsuarios from './ItemUsuarios';
 
 const UsuariosAdmin = (props) => {
-    const {inactivo, setInactivo} = props
+    const {inactivo, setInactivo, usuarios, consultarUsuarios, setConsultarUsuarios} = props;
     return (
         <Container fluid className='app p-0 text-dark d-flex justify-content-start'>
             <SidebarCliente
@@ -24,8 +24,9 @@ const UsuariosAdmin = (props) => {
                     </Col>
                 </Row>
                 <ListGroup className='mt-3'>
-                    {
-                        <ItemUsuarios />
+                    {usuarios.map((user)=>(
+                        <ItemUsuarios user={user} key={user.id} setConsultarUsuarios={setConsultarUsuarios} consultarUsuarios={consultarUsuarios}/>
+                    ))   
                     }
                 </ListGroup>
             </div>

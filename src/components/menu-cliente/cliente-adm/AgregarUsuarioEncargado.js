@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
+import { withRouter } from 'react-router'; 
 import BarraPrincipal from '../../BarraPrincipal';
 import SideBarCliente from '../../SideBarCliente';
 import {Link} from 'react-router-dom';
@@ -7,14 +8,18 @@ import Swal from "sweetalert2";
 
 
 const AgregarUsuarioEncargado = (props) => {
-    const { inactivo, setInactivo } = props
+    const { inactivo, setInactivo, setConsultarUsuarios } = props
     const [user, setUser] = useState({
         nombre: "",
         apellido: "",
         email: "",
         clave: "",
-        celular: ""
+        celular: "",
+        tipoUsuario : "encargado"
     })
+
+    ;
+    const URL = process.env.REACT_APP_API_URL + "/users";
 
     /** State para validaciones **/
     const [nombreValid, setNombreValid] = useState("");
@@ -112,12 +117,16 @@ const AgregarUsuarioEncargado = (props) => {
         setUser({ ...user, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = e => {
-        e.preventDefault()
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        console.log(user)
+        const nuevoUsuario = user;
+        
         if(validacionApe(user.apellido) || validacionNom(user.nombre) || validacionEmail(user.email) || validacionClave(user.clave) || validacionCel(user.celular)){
+            
             const Toast = Swal.mixin({
                 toast: true,
-                position: 'top-end',
+                position: 'center',
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
@@ -132,6 +141,25 @@ const AgregarUsuarioEncargado = (props) => {
               })
         } else {
             console.log(user)
+            console.log(nuevoUsuario)
+            try{
+                const res=await fetch(URL, {
+                    method: "POST",
+                    headers : {
+                        "Content-Type" : "application/json"
+                    },
+                    body : JSON.stringify(nuevoUsuario)
+                });
+
+                console.log(nuevoUsuario)
+                console.log(res)
+                if(res.status===201){
+                    console.log(res)
+                console.log(nuevoUsuario)
+                console.log(user)
+            console.log(nuevoUsuario)
+            setConsultarUsuarios(true);
+
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -148,6 +176,14 @@ const AgregarUsuarioEncargado = (props) => {
                 title: 'Encargado agregado'
               })
             e.target.reset();
+            props.history.push("/admin-cliente/usuarios")
+
+
+                }
+
+            }catch(error){
+                console.log(error)
+            }
         }
     }
 
@@ -298,4 +334,4 @@ const AgregarUsuarioEncargado = (props) => {
     );
 };
 
-export default AgregarUsuarioEncargado;
+export default withRouter(AgregarUsuarioEncargado);
