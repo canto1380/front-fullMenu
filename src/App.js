@@ -12,6 +12,7 @@ import EditarProducto from './components/menu-cliente/cliente-adm/EditarProducto
 import UsuariosAdmin from './components/menu-cliente/cliente-adm/UsuariosAdmin';
 import EditarUsuarioEncargado from './components/menu-cliente/cliente-adm/EditarUsuarioEncargado';
 import AgregarUsuarioEncargado from './components/menu-cliente/cliente-adm/AgregarUsuarioEncargado'
+import PedidosHistorial from './components/menu-cliente/cliente-adm/PedidosHistorial';
 
 
 function App() {
@@ -132,6 +133,14 @@ function App() {
             setConsultarUsuarios={setConsultarUsuarios}
           />
         </Route>
+        <Route exact path='/admin-cliente/pedidos'>
+          <PedidosHistorial
+            inactivo={inactivo}
+            setInactivo={setInactivo}
+          />
+        </Route>
+
+        {/* <Route exact path='/sidebar'> */}
         <Route exact path='/admin-cliente/categorias'>
           <AdminMenuCategoria consultarCat={consultarCat} setConsultarCat={setConsultarCat} categorias={categorias}/>
         </Route>
