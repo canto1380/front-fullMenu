@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Card, Modal, Form, ListGroup} from "react-bootstrap";
-import ItemCategorias from './ItemCategorias';
+import {Button, Card, Modal, Form, ListGroup, Container} from "react-bootstrap";
+import BarraPrincipal from '../../BarraPrincipal';
+import ItemCategorias from '../../menu-admin/ItemCategorias';
+import SideBarCliente from '../../SideBarCliente';
+
 
 const AdminMenuCategoria = (props) => {
 
@@ -39,12 +42,15 @@ const AdminMenuCategoria = (props) => {
 
 
     return (
-        <div>
+      <Container fluid className='app p-0 text-dark d-flex justify-content-start'>
+        <SideBarCliente/>
+        <div className="">
+        <BarraPrincipal/>
             <h3>Categorias</h3>
             <Button variant="primary" onClick={handleShow}>
         Agregar 
       </Button>
-
+      {/* modal agregar categoria */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Agregar Categorias</Modal.Title>
@@ -70,7 +76,9 @@ const AdminMenuCategoria = (props) => {
                 <ItemCategorias cat={cat} key={cat.id} setConsultarCat={props.setConsultarCat}/>
               ))}
             </ListGroup>
-  </div>
+        </div>
+        
+  </Container>
     );
 };
 

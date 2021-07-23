@@ -4,8 +4,7 @@ import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import AdminPrincipal from './components/menu-admin/AdminPrincipal';
 import ClientePrincipal from './components/menu-cliente/ClientePrincipal';
-import SidebarCliente from './components/SideBarCliente'
-import AdminMenuCategoria from './components/menu-admin/AdminMenuCategoria';
+import AdminMenuCategoria from './components/menu-cliente/cliente-adm/AdminMenuCategoria';
 import IndexClienteAdm from './components/menu-cliente/cliente-adm/IndexClienteAdm';
 import ProductosClienteAdm from './components/menu-cliente/cliente-adm/ProductosClienteAdm';
 import AgregarProducto from './components/menu-cliente/cliente-adm/AgregarProducto';
@@ -14,6 +13,7 @@ import UsuariosAdmin from './components/menu-cliente/cliente-adm/UsuariosAdmin';
 import EditarUsuarioEncargado from './components/menu-cliente/cliente-adm/EditarUsuarioEncargado';
 import AgregarUsuarioEncargado from './components/menu-cliente/cliente-adm/AgregarUsuarioEncargado'
 import PedidosHistorial from './components/menu-cliente/cliente-adm/PedidosHistorial';
+
 
 function App() {
   /***** PROPS *****/
@@ -117,18 +117,23 @@ function App() {
           <UsuariosAdmin
           inactivo={inactivo}
           setInactivo={setInactivo}
+          usuarios={usuarios}
+          consultarUsuarios={consultarUsuarios}
+          setConsultarUsuarios={setConsultarUsuarios}
           />
         </Route>
-        <Route exact path='/admin-cliente/usuarios/editarEncargado'>
+        <Route exact path='/admin-cliente/usuarios/editarEncargado/:id'>
           <EditarUsuarioEncargado
             inactivo={inactivo}
             setInactivo={setInactivo}
+            setConsultarUsuarios={setConsultarUsuarios}
           />
         </Route>
         <Route exact path='/admin-cliente/usuarios/nuevoEncargado'>
           <AgregarUsuarioEncargado
             inactivo={inactivo}
             setInactivo={setInactivo}
+            setConsultarUsuarios={setConsultarUsuarios}
           />
         </Route>
         <Route exact path='/admin-cliente/pedidos'>
@@ -140,7 +145,6 @@ function App() {
 
         {/* <Route exact path='/sidebar'> */}
         <Route exact path='/admin-cliente/categorias'>
-          <SidebarCliente/>
           <AdminMenuCategoria consultarCat={consultarCat} setConsultarCat={setConsultarCat} categorias={categorias}/>
         </Route>
       </Switch>

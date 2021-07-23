@@ -1,18 +1,26 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { Container, Button, Row, Col, Form } from 'react-bootstrap';
+import { useParams, withRouter } from 'react-router';
 import {Link} from 'react-router-dom'
 import SideBarCliente from '../../SideBarCliente';
 import BarraPrincipal from '../../BarraPrincipal';
+import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 const EditarUsuarioEncargado = (props) => {
     const {inactivo, setInactivo} = props
-    const [user, setUser] = useState({
-        nombre: "",
-        apellido: "",
-        email: "",
-        clave: "",
-        celular: ""
-    })
+    const [user, setUser] = useState({})
+    
+    const id = useParams().id;
+
+    const URL = process.env.REACT_APP_API_URL+"/users/"+id;
+
+    //defino variables ref
+    const nombreRef = useRef("");
+    const apellidoRef = useRef("");
+    const emailRef = useRef("");
+    const claveRef= useRef("");
+    const celularRef=useRef("");
     /** State para validaciones **/
     const [nombreValid, setNombreValid] = useState("");
     const [nombreInvalid, setNombreInvalid] = useState("");
@@ -48,7 +56,7 @@ const EditarUsuarioEncargado = (props) => {
         setNombreInvalid('')
         setNombreValid('')
         const n = expresiones.nombre
-        if (user.nombre.trim() !== '' && n.test(user.nombre)) {
+        if (nombreRef.current.value.trim() !== '' && n.test(nombreRef.current.value)) {
             setNombreValid(true)
             return false
         } else {
@@ -60,7 +68,7 @@ const EditarUsuarioEncargado = (props) => {
         setApellidoInvalid('')
         setApellidoValid('')
         const a = expresiones.apellido
-        if (user.apellido.trim() !== '' && a.test(user.apellido)) {
+        if (apellidoRef.current.value.trim() !== '' && a.test(apellidoRef.current.value)) {
             setApellidoValid(true)
             return false
         } else {
@@ -72,7 +80,7 @@ const EditarUsuarioEncargado = (props) => {
         setEmailInvalid('')
         setEmailValid('')
         const e = expresiones.email
-        if (user.email.trim() !== '' && e.test(user.email)) {
+        if (emailRef.current.value.trim() !== '' && e.test(emailRef.current.value)) {
             setEmailValid(true)
             return false
         } else {
@@ -84,7 +92,7 @@ const EditarUsuarioEncargado = (props) => {
         setClaveInvalid('')
         setClaveValid('')
         const c = expresiones.clave
-        if (user.clave.trim() !== '' && c.test(user.clave)) {
+        if (claveRef.current.value.trim() !== '' && c.test(claveRef.current.value)) {
             setClaveValid(true)
             return false
         } else {
@@ -96,7 +104,7 @@ const EditarUsuarioEncargado = (props) => {
         setCelularInvalid('')
         setCelularValid('')
         const c = expresiones.celular
-        if (user.celular.trim() !== '' && c.test(user.celular)) {
+        if (celularRef.current.value.trim() !== '' && c.test(celularRef.current.value)) {
             setCelularValid(true)
             return false
         } else {
@@ -105,11 +113,66 @@ const EditarUsuarioEncargado = (props) => {
         }
     }
 
-    const handleValores = (e) => {
-        setUser({ ...user, [e.target.name]: e.target.value })
-    }
-    const handleSubmit =e =>{
-        e.preventDefault()
+    useEffect(()=>{
+        const consultarUser = async ()=>{
+            try{
+                const respuesta = await fetch(URL);
+                if(respuesta.status===200){
+                    const resp = await respuesta.json();
+                    setUser(resp)
+                }
+            }catch(error){
+                console.log(error)
+
+            }
+        };
+        consultarUser();
+    },[id]);
+
+    const handleSubmit = async(e) =>{
+        e.preventDefault();
+        try{
+            const usuarioModidicado = {
+                nombre : nombreRef.current.value,
+                apellido : apellidoRef.current.value,
+                email: emailRef.current.value,
+                clave: claveRef.current.value,
+                celular: celularRef.current.value
+            }
+
+            const respuesta = await fetch(URL, {
+                method: "PUT",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body : JSON.stringify(usuarioModidicado)
+            })
+            if(respuesta.status===200){
+                console.log("usuario modificado correctamente")
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'center',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Encargado agregado'
+                  })
+                  props.setConsultarUsuarios(true);
+                props.history.push("/admin-cliente/usuarios");
+            }else{
+                console.log("ocurrio un error");
+            }
+
+        }catch(error){
+
+        }
     }
 
     return (
@@ -127,15 +190,17 @@ const EditarUsuarioEncargado = (props) => {
                             </Form.Label>
                             <Form.Control
                                 type="text"
+                                ref={nombreRef}
+                                defaultValue={user.nombre}
                                 onBlur={validacionNom}
                                 isValid={nombreValid}
                                 isInvalid={nombreInvalid}
                                 required
-                                placeholder="Juan"
                                 name='nombre'
                                 minLength="4"
                                 maxLength="25"
-                                onChange={handleValores} />
+                                // onChange={handleValores}
+                                 />
                             <Form.Control.Feedback
                                 type="invalid"
                                 className="text-danger "
@@ -150,14 +215,16 @@ const EditarUsuarioEncargado = (props) => {
                             </Form.Label>
                             <Form.Control
                                 type="text"
+                                ref={apellidoRef}
+                                defaultValue={user.apellido}
                                 name='apellido'
                                 minLength="4"
                                 maxLength="25"
                                 onBlur={validacionApe}
                                 isValid={apellidoValid}
                                 isInvalid={apellidoInvalid}
-                                onChange={handleValores}
-                                placeholder="Perez" />
+                                // onChange={handleValores} 
+                                />
                             <Form.Text className="text-muted">
                                 Campo obligatorio. De 4 a 25 carecteres
                             </Form.Text>
@@ -170,14 +237,16 @@ const EditarUsuarioEncargado = (props) => {
                             </Form.Label>
                             <Form.Control
                                 type="tel"
+                                ref={celularRef}
+                                defaultValue={user.celular}
                                 onBlur={validacionCel}
                                 isValid={celularValid}
                                 isInvalid={celularInvalid}
                                 required
-                                placeholder="3815151515"
                                 name='celular'
                                 maxLength={10}
-                                onChange={handleValores} />
+                                // onChange={handleValores} 
+                                />
                             <Form.Control.Feedback
                                 type="invalid"
                                 className="text-danger "
@@ -192,12 +261,14 @@ const EditarUsuarioEncargado = (props) => {
                             </Form.Label>
                             <Form.Control
                                 type="email"
+                                ref={emailRef}
+                                defaultValue={user.email}
                                 name='email'
                                 onBlur={validacionEmail}
                                 isValid={emailValid}
                                 isInvalid={emailInvalid}
-                                onChange={handleValores}
-                                placeholder="algo@dominio.com" />
+                                // onChange={handleValores} 
+                                />
                             <Form.Text className="text-muted">
                                 Campo obligatorio.
                             </Form.Text>
@@ -210,6 +281,8 @@ const EditarUsuarioEncargado = (props) => {
                             </Form.Label>
                             <Form.Control
                                 type="password"
+                                ref={claveRef}
+                                defaultValue={user.clave}
                                 onBlur={validacionClave}
                                 isValid={claveValid}
                                 isInvalid={claveInvalid}
@@ -217,7 +290,8 @@ const EditarUsuarioEncargado = (props) => {
                                 name='clave'
                                 minLength="8"
                                 maxLength="14"
-                                onChange={handleValores} />
+                                // onChange={handleValores} 
+                                />
                             <Form.Control.Feedback
                                 type="invalid"
                                 className="text-danger "
@@ -231,6 +305,7 @@ const EditarUsuarioEncargado = (props) => {
                             </Form.Label>
                             <Form.Control
                                 type="password"
+                                defaultValue={user.clave}
                                 onBlur={validacionClave}
                                 isValid={claveValid}
                                 isInvalid={claveInvalid}
@@ -238,7 +313,8 @@ const EditarUsuarioEncargado = (props) => {
                                 name='clave'
                                 minLength="8"
                                 maxLength="14"
-                                onChange={handleValores} />
+                                // onChange={handleValores} 
+                                />
                             <Form.Control.Feedback
                                 type="invalid"
                                 className="text-danger "
@@ -258,4 +334,4 @@ const EditarUsuarioEncargado = (props) => {
     );
 };
 
-export default EditarUsuarioEncargado;
+export default withRouter(EditarUsuarioEncargado);

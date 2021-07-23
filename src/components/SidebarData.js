@@ -15,7 +15,7 @@ export const SidebarData =[
     {
         tittle: "Categorias",
         icon: <CategoryIcon />,
-        link:"/categorias"
+        link:"/admin-cliente/categorias"
     },
     {
         tittle: "Productos",
