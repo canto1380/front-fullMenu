@@ -1,3 +1,7 @@
+.alineacionVertical{
+    vertical-align:middle;
+}
+
 @media(max-width: 768px){
     .margenTop{
        margin-top: 7px; 

@@ -11,14 +11,30 @@ const AgregarProducto = (props) => {
     const [producto, setProducto] = useState({
         nombreProducto: "",
         descripcion: "",
-        categoria: "",
+        categoria: "---",
         precio: "",
-        descuento: "",
-        foto: "",
-        publicado: true
+        descuento: 0,
+        foto: ""
     })
     const [total,setTotal]= useState('')
+    const [publicado, setPublicado] = useState(true)
+    const [destacado, setDestacado] = useState(false)
+    const handlePublicado =(e)=>{
+        if(e.target.checked){
+            setPublicado(true)
+        } else{
+            setPublicado(false)
+        }
+    }
 
+    const handleDestacado =(e)=>{
+        if(e.target.checked){
+            setDestacado(true)
+        } else{
+            setDestacado(false)
+        }
+    }
+    console.log(publicado)
     /** State Validaciones de feed */
     const [prodValid, setProdValid] = useState("");
     const [prodInvalid, setProdInvalid] = useState("");
@@ -133,7 +149,7 @@ const AgregarProducto = (props) => {
         setProducto({ ...producto, [e.target.name]: e.target.value })
     };
     const URL = process.env.REACT_APP_API_URL + "/productos"
-
+    
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -162,7 +178,8 @@ const AgregarProducto = (props) => {
                 descuento: producto.descuento,
                 total,
                 foto: producto.foto,
-                publicado: producto.publicado
+                publicado,
+                destacado
             }    
             console.log(productoNuevo)
             try {
@@ -200,8 +217,6 @@ const AgregarProducto = (props) => {
               }catch(error){
                 console.log(error)
               }
-
-    
         } 
     };
 
@@ -263,6 +278,7 @@ const AgregarProducto = (props) => {
                             </Form.Label>
                             <Form.Group className='mb-0 d-flex'>
                                 <select className='form-select' onChange={handleValores} name="categoria" >
+                                    <option>Seleccione una categoría</option>
                                     {categorias.map((cat)=>(
                                         <option key={cat.id}>{cat.nombreCategoria}</option>
                                     ))}
@@ -302,6 +318,7 @@ const AgregarProducto = (props) => {
                                     onBlur={validacionDesc}
                                     isValid={descValid}
                                     isInvalid={descInvalid}
+                                    defaultValue={0}
                                     onChange={handleValores}
                                     maxLength={2}
                                     placeholder="10" />
@@ -338,18 +355,26 @@ const AgregarProducto = (props) => {
                                 name='foto'
                                 onChange={handleValores} />
                         </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <Row>
+                        <Form.Group as={Col} xs={4} sm={3} md={2} className="mb-3" controlId="formBasicCheckbox">
                             <Form.Check
                                 type="checkbox"
                                 label="Publicar"
                                 name='publicado'
-                                defaultChecked={producto.publicado}
-                                defaultValue={false}
-
-                                onChange={handleValores}
+                                defaultChecked={publicado}
+                                onChange={handlePublicado}
                             />
                         </Form.Group>
+                        <Form.Group as={Col} xs={4} sm={3} md={2} className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Check
+                                type="checkbox"
+                                label="Destacar"
+                                name='destacado'
+                                defaultChecked={destacado}
+                                onChange={handleDestacado}
+                            />
+                        </Form.Group>
+                        </Row>
                         <div className='d-flex justify-content-start align-items-center'>
                             <Button variant="primary" type="submit">
                                 Agregar producto
