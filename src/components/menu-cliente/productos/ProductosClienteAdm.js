@@ -10,7 +10,8 @@ const ProductosClienteAdm = (props) => {
     const { inactivo, setInactivo, productos, setConsultarProductos, categorias } = props
     const [cat, setCat] = useState('')
     const [buscador, setBuscador] = useState([])
-
+    const [filtradoBuscador, setFiltradoBuscador]=useState([])
+    console.log(buscador)
     const valorCategoria =(e) =>{
         setCat(e.target.value)
     }
@@ -18,15 +19,14 @@ const ProductosClienteAdm = (props) => {
         setBuscador(e.target.value)
     }
     let productosFiltrados = productos.filter((a)=> a.categoria === cat);
+    
     const filtrar =() =>{
         let filtroBuscador = productos.filter((item)=>{
-            if(item.nombreProducto.toLowerCase().includes(buscador)){
+            if(item.nombreProducto.toLowerCase().includes(buscador.toLowerCase())){
                 return item
-            } else {
-                setBuscador('NADA')
             }
         });
-        setBuscador(filtroBuscador)
+        setFiltradoBuscador(filtroBuscador)
     }
     return (
         <Container fluid className='app p-0 text-dark d-flex justify-content-start'>
@@ -50,7 +50,8 @@ const ProductosClienteAdm = (props) => {
                             <select
                                 onChange={valorCategoria}
                                 aria-label='Default select example'
-                                className='form-select'
+                                
+                                className='form-select form-select-sm'
                             >
                                 <option>Seleccione una categoría</option>
                                 {categorias.map((cat)=>(
@@ -69,7 +70,6 @@ const ProductosClienteAdm = (props) => {
                                 type="search" 
                                 placeholder="Buscar Producto"
                             />
-                            <Button size='sm' className="btn btn-light ms-3 border rounded" type="submit">Buscar</Button>
                         </form>
                     </Col>
                 </Row>
@@ -77,9 +77,8 @@ const ProductosClienteAdm = (props) => {
                     
                     {<ItemProductos 
                                 productos={productos}
-                                buscador={buscador}
+                                filtradoBuscador={filtradoBuscador}
                                 productosFiltrados={productosFiltrados}
-                                buscador={buscador}
                                 setConsultarProductos={setConsultarProductos}
                             />
                     }

@@ -133,10 +133,11 @@ function App() {
             categorias={categorias}
           />
         </Route>
-        <Route exact path='/admin-cliente/productos/editarProducto'>
+        <Route exact path='/admin-cliente/productos/editarProducto/:id'>
           <EditarProducto
             inactivo={inactivo}
             setInactivo={setInactivo}
+            categorias={categorias}
           />
         </Route>
         <Route exact path='/admin-cliente/usuarios'>

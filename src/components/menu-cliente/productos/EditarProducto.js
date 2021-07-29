@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from "react-router-dom";
+import { Link, withRouter, useParams } from "react-router-dom";
 
 import { Container, Button, Row, Col, Form } from 'react-bootstrap';
 import BarraPrincipal from '../../BarraPrincipal';
@@ -8,7 +8,9 @@ import Swal from "sweetalert2";
 
 
 const EditarProducto = (props) => {
-    const {inactivo, setInactivo} = props
+    const {inactivo, setInactivo, categorias} = props
+    const {id} = useParams()
+
     const [producto, setProducto] = useState({
         nombreProducto: "",
         descripcion: "",
@@ -16,8 +18,27 @@ const EditarProducto = (props) => {
         precio: "",
         descuento: "",
         foto: "",
-        publicado: true
+        publicado: ''
     })
+
+    useEffect(()=>{
+        const consultarProducto = async () =>{
+            try {
+                const res = await fetch(
+                    process.env.REACT_APP_API_URL+"/productos/" +id
+                    )
+                    if(res.status === 200){
+                        const resp = await res.json()
+                        setProducto(resp)
+                    }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        consultarProducto()
+    },[id])
+    console.log(producto)
+
     const [total,setTotal]= useState('')
     /** State Validaciones de feed */
     const [prodValid, setProdValid] = useState("");
@@ -155,8 +176,9 @@ const EditarProducto = (props) => {
                                 onBlur={validacionProd}
                                 isValid={prodValid}
                                 isInvalid={prodInvalid}
+                                defaultValue={producto.nombreProducto}
                                 onChange={handleValores}
-                                placeholder="Coca Cola x 1.5 lts" />
+                                />
                         <Form.Control.Feedback
                             type="invalid"
                             className="text-danger "
@@ -176,6 +198,7 @@ const EditarProducto = (props) => {
                                 name='descripcion'
                                 onChange={handleValores}
                                 onBlur={validacionDescrip}
+                                defaultValue={producto.descripcion}
                                 isValid={descripValid}
                                 isInvalid={descripInvalid}
                             />
@@ -192,14 +215,19 @@ const EditarProducto = (props) => {
                             <Form.Label>
                                 <b>Categoria</b>
                             </Form.Label>
-                            <Form.Control
-                                onBlur={validacionCategoria}
-                                isValid={catValid}
-                                isInvalid={catInvalid}
-                                type="text"
-                                name='categoria'
-                                onChange={handleValores}
-                                disabled />
+                           
+                            <Form.Group className='mb-0 d-flex'>
+                                <select
+                                    className='form-select' 
+                                    onChange={handleValores}
+                                    name="categoria" 
+                                    defaultValue={producto.categoria}
+                                    >
+                                    {categorias.map((cat)=>(
+                                        <option key={cat.id}>{cat.nombreCategoria}</option>
+                                    ))}
+                                </select>
+                            </Form.Group>
                         </Form.Group>
                         <Row>
                             <Form.Group as={Col} xs={12} md={6} lg={4} className="mb-3" controlId="formBasicEmail">
@@ -213,7 +241,7 @@ const EditarProducto = (props) => {
                                     isInvalid={precioInvalid}
                                     required
                                     placeholder="$"
-                                    
+                                    defaultValue={producto.precio}
                                     name='precio'
                                     onChange={handleValores} />
                                     <Form.Control.Feedback
@@ -235,6 +263,7 @@ const EditarProducto = (props) => {
                                     isValid={descValid}
                                     isInvalid={descInvalid}
                                     onChange={handleValores}
+                                    defaultValue={producto.descuento}
                                     placeholder="10" />
                                 <Form.Text className="text-muted">
                                     El numero ingresado es el % de descuento
@@ -250,8 +279,8 @@ const EditarProducto = (props) => {
                                     onBlur={validacionTotal}
                                     isValid={totalValid}
                                     isInvalid={totalInvalid}
-                                    value={producto.precio * producto.descuento}
-                                    onSelect={(e) => setTotal(producto.precio * producto.descuento)}
+                                    value={producto.precio-(producto.precio * producto.descuento)/100}
+                                    onSelect={(e) => setTotal(producto.precio-(producto.precio * producto.descuento)/100)}
                                     />
                                 <Form.Text className="text-muted">
                                     Precio total con descuento
@@ -274,9 +303,8 @@ const EditarProducto = (props) => {
                                 type="checkbox"
                                 label="Publicar"
                                 name='publicado'
-                                defaultChecked={producto.publicado}
-                                defaultValue={false}
-
+                                // defaultChecked={producto.publicado}
+                                defaultValue={producto.publicado}
                                 onChange={handleValores}
                             />
                         </Form.Group>
@@ -295,4 +323,4 @@ const EditarProducto = (props) => {
     );
 };
 
-export default EditarProducto;
+export default withRouter(EditarProducto);
