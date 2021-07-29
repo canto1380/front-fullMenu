@@ -13,6 +13,7 @@ import UsuariosAdmin from './components/menu-cliente/usuarios/UsuariosAdmin';
 import EditarUsuarioEncargado from './components/menu-cliente/usuarios/EditarUsuarioEncargado';
 import AgregarUsuarioEncargado from './components/menu-cliente/usuarios/AgregarUsuarioEncargado'
 import PedidosHistorial from './components/menu-cliente/pedidos/PedidosHistorial';
+import ImpresionPedido from './components/menu-cliente/pedidos/ImpresionPedido';
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
   //Productos
   const [productos, setProductos] = useState([]);
   const [consultarProductos, setConsultarProductos]= useState(true);
+  //Pedidos
+  const [pedidos, setPedidos] = useState([]);
+  const [consultarPedidos, setConsultarPedidos]= useState(true);
   //Sidebar
   const[inactivo, setInactivo] = useState(false)
 
@@ -73,6 +77,25 @@ function App() {
     }
   },[consultarProductos]);
 
+  //Pedidos
+  const consultarAPIPedidos = async()=>{
+    try {
+      const res = await fetch(process.env.REACT_APP_API_URL+ '/pedidos');
+      const infoPedidos = await res.json()
+      if(res.status === 200){
+        setPedidos(infoPedidos)
+        setConsultarPedidos(false)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(()=>{
+    if(consultarPedidos){
+      consultarAPIPedidos();
+    }
+  },[consultarPedidos]);
+
   return (
     <Router>
       <Switch>
@@ -113,6 +136,7 @@ function App() {
             inactivo={inactivo}
             setInactivo={setInactivo}
             categorias={categorias}
+            setConsultarProductos={setConsultarProductos}
           />
         </Route>
         <Route exact path='/admin-cliente/usuarios'>
@@ -142,7 +166,11 @@ function App() {
           <PedidosHistorial
             inactivo={inactivo}
             setInactivo={setInactivo}
+            pedidos={pedidos}
           />
+        </Route>
+        <Route exact path='/print'>
+          <ImpresionPedido/>
         </Route>
 
         {/* <Route exact path='/sidebar'> */}

@@ -64,11 +64,11 @@
   ],
   "productos": [
     {
-      "nombreProducto": "empanada de carne",
-      "descripcion": "empanada de carne",
-      "precio": 60,
+      "nombreProducto": "aaaaaaaaaanada",
+      "descripcion": "sssss",
+      "precio": "600",
       "destacado": false,
-      "descuento": 0,
+      "descuento": "20",
       "categoria": "Ensaladas",
       "foto": "cdsafdsfds",
       "publicado": false,
@@ -258,13 +258,62 @@
   ],
   "pedidos": [
     {
-      "id": 1,
-      "idMesa": "Mesa1",
-      "numPedido": 123,
-      "fecha": "",
-      "hora": "",
+      "id": "1qwew2",
+      "idMesa": "1",
+      "idEncargado": "3",
+      "fecha": "16-05-2021",
+      "hora": "19:45",
+      "monto": 700,
       "descuento": 0,
       "total": 700,
+      "formaPago": "efectivo",
+      "tipoPedido": "local"
+    },
+    {
+      "id": "1qwf2",
+      "idMesa": "1",
+      "idEncargado": "2",
+      "fecha": "16-06-2021",
+      "hora": "22:52",
+      "monto": 1700,
+      "descuento": 0,
+      "total": 1700,
+      "formaPago": "tarjeta",
+      "tipoPedido": "local"
+    },
+    {
+      "id": "88wf2",
+      "idMesa": "2",
+      "idEncargado": "2",
+      "fecha": "14-05-2021",
+      "hora": "20:32",
+      "monto": 1500,
+      "descuento": 20,
+      "total": 1200,
+      "formaPago": "efectivo",
+      "tipoPedido": "local"
+    },
+    {
+      "id": "4rqf2",
+      "idMesa": "2",
+      "idEncargado": "1",
+      "fecha": "16-05-2021",
+      "hora": "19:41",
+      "monto": 1450,
+      "descuento": 0,
+      "total": 1450,
+      "formaPago": "tarjeta",
+      "tipoPedido": "local"
+    },
+    {
+      "id": "189d2",
+      "idMesa": "4",
+      "idEncargado": "2",
+      "fecha": "18-05-2021",
+      "hora": "21:45",
+      "monto": 2500,
+      "descuento": 10,
+      "total": 2250,
       "formaPago": "efectivo",
       "tipoPedido": "local"
     }
@@ -287,6 +336,21 @@
   "mesas": [
     {
       "id": "1",
+      "numeroMesa": 1,
+      "libre": true
+    },
+    {
+      "id": "2",
+      "numeroMesa": 2,
+      "libre": true
+    },
+    {
+      "id": "3",
+      "numeroMesa": 3,
+      "libre": true
+    },
+    {
+      "id": "4",
       "numeroMesa": 4,
       "libre": true
     }
