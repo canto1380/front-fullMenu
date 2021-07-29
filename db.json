@@ -17,14 +17,6 @@
       "id": 3
     },
     {
-      "nombre": "Martin Jose",
-      "apellido": "Juarez",
-      "email": "asdasda@jhgk.com",
-      "clave": "asdasdasdasdas",
-      "celular": "4187474156",
-      "id": 4
-    },
-    {
       "nombre": "Lucas",
       "apellido": "Rojas",
       "email": "mkl@lkjaf.com",
@@ -51,15 +43,26 @@
   "categorias": [
     {
       "nombreCategoria": "Comidas",
+      "publicada": false,
+      "destacada": false,
       "id": 14
     },
     {
       "nombreCategoria": "Ensaladas",
-      "id": 16
+      "destacada": false,
+      "publicada": false,
+      "id": 19
     },
     {
       "nombreCategoria": "Minutas",
-      "id": 17
+      "publicada": false,
+      "destacada": false,
+      "id": 21
+    },
+    {
+      "nombreCategoria": "Empanadas",
+      "destacada": false,
+      "id": 22
     }
   ],
   "productos": [

@@ -23,6 +23,10 @@ function App() {
   //Categorias
   const [categorias, setCategorias] = useState([]);
   const [consultarCat, setConsultarCat]= useState(true);
+
+  // let categoriasDestacadas = categorias.filter((cat) => cat.destacada);
+  // let cantDestacadas = categoriasDestacadas.length;
+
   //Productos
   const [productos, setProductos] = useState([]);
   const [consultarProductos, setConsultarProductos]= useState(true);
@@ -72,6 +76,27 @@ function App() {
       consultarAPIProductos();
     }
   },[consultarProductos]);
+
+  //Usuarios
+  const consultarAPIUsuarios = async()=>{
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_API_URL + "/users"
+      );
+      const infoUsers = await res.json();
+      if(res.status === 200){
+        setUsuarios(infoUsers)
+        setConsultarUsuarios(false)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(()=>{
+    if(consultarUsuarios){
+      consultarAPIUsuarios();
+    }
+  },[consultarUsuarios]);
 
   return (
     <Router>
@@ -146,7 +171,11 @@ function App() {
 
         {/* <Route exact path='/sidebar'> */}
         <Route exact path='/admin-cliente/categorias'>
-          <AdminMenuCategoria consultarCat={consultarCat} setConsultarCat={setConsultarCat} categorias={categorias}/>
+          <AdminMenuCategoria 
+          consultarCat={consultarCat} 
+          setConsultarCat={setConsultarCat} 
+          categorias={categorias}
+          />
         </Route>
       </Switch>
     </Router>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Card, Modal, Form, ListGroup, Container} from "react-bootstrap";
+import {Button, Card, Modal, Form, ListGroup, Container, Row, Col} from "react-bootstrap";
 import BarraPrincipal from '../../BarraPrincipal';
 import ItemCategorias from './ItemCategorias';
 import SideBarCliente from '../../SideBarCliente';
@@ -7,7 +7,7 @@ import SideBarCliente from '../../SideBarCliente';
 
 const AdminMenuCategoria = (props) => {
 
-  const { consultarCat, setConsultarCat, categorias} = props;
+  const { inactivo, setInactivo, consultarCat, setConsultarCat, categorias} = props;
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -43,13 +43,22 @@ const AdminMenuCategoria = (props) => {
 
     return (
       <Container fluid className='app p-0 text-dark d-flex justify-content-start'>
-        <SideBarCliente/>
-        <div className="">
+        <SideBarCliente
+        inactivo={inactivo}
+        setInactivo={setInactivo}
+        />
+        <div className={`${inactivo ? 'parte2-inactivo' : 'parte2'}`}>
         <BarraPrincipal/>
-            <h3>Categorias</h3>
-            <Button variant="primary" onClick={handleShow}>
+        <Row className="d-flex justify-content-between align-items-center mx-0">
+                    <Col className='text-start'>
+                        <h4>Categoria</h4>
+                    </Col>
+                    <Col className='text-end'>
+                    <Button variant="primary" onClick={handleShow}>
         Agregar 
       </Button>
+                    </Col>
+                </Row>
       {/* modal agregar categoria */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
