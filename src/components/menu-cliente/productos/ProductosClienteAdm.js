@@ -11,7 +11,6 @@ const ProductosClienteAdm = (props) => {
     const [cat, setCat] = useState('')
     const [buscador, setBuscador] = useState([])
     const [filtradoBuscador, setFiltradoBuscador]=useState([])
-    console.log(buscador)
     const valorCategoria =(e) =>{
         setCat(e.target.value)
     }

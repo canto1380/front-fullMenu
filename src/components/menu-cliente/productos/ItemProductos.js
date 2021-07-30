@@ -5,7 +5,6 @@ import '../../../css/clienteAdm.css'
 
 const ItemProductos = (props) => {
     const { productos, filtradoBuscador, productosFiltrados } = props
-
     let filtradoTotal =[]
     productosFiltrados.filter((d1)=>{
         filtradoBuscador.filter((d2)=>{
@@ -14,6 +13,7 @@ const ItemProductos = (props) => {
             }
         })
     })
+    console.log(filtradoBuscador)
     return (
         <div className='mx-3'>
             <Table responsive striped bordered hover size='sm'>

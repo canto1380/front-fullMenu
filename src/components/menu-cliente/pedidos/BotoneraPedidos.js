@@ -7,7 +7,7 @@ import PrintIcon from '@material-ui/icons/Print';
 
 const BotoneraPedidos = (props) => {
   const {pedidos} = props
-
+  console.log(pedidos)
 
   const consultarPedido = async (id) =>{
     try {

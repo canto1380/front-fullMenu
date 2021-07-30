@@ -16,17 +16,14 @@ const PedidosHistorial = (props) => {
     const valorBuscador =(e) =>{
         setBuscador(e.target.value)
     }
-    console.log(buscador)
     const filtrar =() =>{
         let filtroBuscador = pedidos.filter((item)=>{
-            if(item.id.includes(buscador)){
+            if(item.id.includes(buscador.toLowerCase())){
                 return item
             }
         });
         setFiltradoBuscador(filtroBuscador)
     }
-    console.log(filtradoBuscador)
-
     return (
         <Container fluid className='app p-0 text-dark d-flex justify-content-start'>
             <SideBarCliente
@@ -53,7 +50,7 @@ const PedidosHistorial = (props) => {
                                 onChange={valorBuscador} 
                                 onKeyUp={filtrar}
                                 type="search" 
-                                placeholder="Buscar Producto"
+                                placeholder="N° pedido"
                             />
                         </form>
                     </Col>
@@ -64,9 +61,12 @@ const PedidosHistorial = (props) => {
                     }
                 </Form>
                 <div>
-                    <ItemHistPedidos 
+                    {
+                        <ItemHistPedidos 
                         pedidos={pedidos}
+                        filtradoBuscador={filtradoBuscador}
                     />
+                    }
                 </div>
             </div>
         </Container>

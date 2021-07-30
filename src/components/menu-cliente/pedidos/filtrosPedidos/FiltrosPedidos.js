@@ -13,65 +13,13 @@ const valorEncargado =(e) =>{
 const valorMonto = (e) =>{
   setMonto(e.target.value)
 }
-const pedidosData =[
-  {
-      nPedido:"15321", Encargado:"Pablo Paz", Fecha:"15/05/2021",monto:1688
-  },
-  {
-      nPedido:"15322",Encargado:"Paula Perez", Fecha:"05/10/2021", monto:2569
-  },
-  {
-      nPedido:"15322", Encargado:"Pablo Paz", Fecha:"15/08/2020", monto:759
-  },
-  {
-      nPedido:"15323", Encargado:"Paula Perez", Fecha:"16/05/2021", monto:2389
-  },
-  {
-      nPedido:"15324", Encargado:"Paula Perez",Fecha:"23/11/2021", monto:3699
-  }
-]
+
 let array=[];
 const filtrarEncargado =() =>{
-  console.log('adentro')
-  const listaFiltrada = pedidosData.map((val)=>{
-    let e = val.Encargado.toLowerCase();
-    let m = val.monto;
-    let f = val.Fecha;
-
-    if(e.indexOf(filtroEncargado.toLowerCase()) !== -1){
-      array.push(val.nPedido)
-    }
-    
-    // if(m>=1 && m<=1000){
-    //   console.log(m)
-    //   array.push(val.nPedido)
-    // } else if(m>1000 && m<=1600){
-    //   console.log(m)
-    //   array.push(val.nPedido)
-    // } else if(m>1601 && m<=2000){
-    //   console.log(m)
-    //   array.push(val.nPedido)
-    // } else if(m>2001 && m<=3000){
-    //   console.log(m)
-    //   array.push(val.nPedido)
-    // } else {
-    //   console.log(m)
-    //   array.push(val.nPedido)
-    // }
-
-  }
-  )
+  
 }
-// const filtrarMonto =()=>{
-//   const listaFiltrada = pedidosData.map((val)=>{
-//     let m = val.monto;
-//     if(m>=1 && m<=1000){
-//       array.push(val.nPedido)
-//     }
-//     // if(m.indexOf(filtroMonto))
-//   })
-// }
-filtrarEncargado();
+
+
 // filtrarMonto()
 console.log(array)
   return (
