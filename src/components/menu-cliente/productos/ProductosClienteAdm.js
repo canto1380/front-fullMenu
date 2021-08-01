@@ -79,6 +79,7 @@ const ProductosClienteAdm = (props) => {
                                 filtradoBuscador={filtradoBuscador}
                                 productosFiltrados={productosFiltrados}
                                 setConsultarProductos={setConsultarProductos}
+                                buscador={buscador}
                             />
                     }
                 </div>

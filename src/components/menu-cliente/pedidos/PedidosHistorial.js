@@ -10,7 +10,7 @@ const PedidosHistorial = (props) => {
     const { inactivo, setInactivo, pedidos } = props
     const [filtros, setFiltros] = useState(false)
     const[filtradoEncargado, setFiltradoEncargado] = useState([])
-    const [buscador, setBuscador] = useState([])
+    const [buscador, setBuscador] = useState('')
     const [filtradoBuscador, setFiltradoBuscador]=useState([])
 
     const valorBuscador =(e) =>{
@@ -65,6 +65,7 @@ const PedidosHistorial = (props) => {
                         <ItemHistPedidos 
                         pedidos={pedidos}
                         filtradoBuscador={filtradoBuscador}
+                        buscador={buscador}
                     />
                     }
                 </div>

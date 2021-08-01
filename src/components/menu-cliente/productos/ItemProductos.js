@@ -4,7 +4,7 @@ import BotoneraProductos from './BotoneraProductos';
 import '../../../css/clienteAdm.css'
 
 const ItemProductos = (props) => {
-    const { productos, filtradoBuscador, productosFiltrados } = props
+    const { productos, filtradoBuscador, productosFiltrados, buscador } = props
     let filtradoTotal =[]
     productosFiltrados.filter((d1)=>{
         filtradoBuscador.filter((d2)=>{
@@ -13,7 +13,7 @@ const ItemProductos = (props) => {
             }
         })
     })
-    console.log(filtradoBuscador)
+    console.log(filtradoTotal)
     return (
         <div className='mx-3'>
             <Table responsive striped bordered hover size='sm'>
@@ -47,6 +47,13 @@ const ItemProductos = (props) => {
                                 )
                             )
                         ) 
+                        // :(filtradoTotal.length === 0 && buscador !=="") ?(
+                        //     <tr className='border border-0'>
+                        //         <td className='border border-0'>
+                        //             <span>Sin coincidencias..</span>
+                        //         </td>
+                        //     </tr>
+                        // )
                         :(productosFiltrados.length !== 0 & filtradoBuscador.length === 0)?(
                             productosFiltrados.map((prod, key) => (
                                 <tr key={key}>

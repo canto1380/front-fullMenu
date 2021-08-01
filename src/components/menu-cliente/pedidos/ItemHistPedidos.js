@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Table } from 'react-bootstrap';
 import BotoneraPedidos from './BotoneraPedidos';
 
 const ItemHistPedidos = (props) => {
-    const { pedidos, filtradoBuscador } = props
-    console.log(filtradoBuscador)
+    const { pedidos, filtradoBuscador, buscador } = props
+    const [msj, setMsj] = useState('Sin coincidencia')
+    const {bandera, setBandera} = useState(false)
+
+
     return (
         <Table responsive striped bordered hover size="sm">
             <thead>
@@ -19,7 +22,7 @@ const ItemHistPedidos = (props) => {
             </thead>
             <tbody>
                 {
-                    (filtradoBuscador.length === 0 ) ?(
+                    (filtradoBuscador.length === 0 && buscador === "" ) ?(
                         pedidos.map((val, key) => (
                             
                                 <tr key={key}>
@@ -35,7 +38,17 @@ const ItemHistPedidos = (props) => {
                                     </td>
                                 </tr>
                         ))
-                    ) : (
+                    )
+                    :(filtradoBuscador.length === 0 && buscador !== "") ?(
+                            <tr className='border border-0'>
+                                <td className='border border-0'>
+                                    <span>Sin coincidencias..</span>
+                                </td>
+                            </tr>
+                        ):(
+                            
+
+                    
                         filtradoBuscador.map((val, key) => {
                             return (
                                 <tr key={key}>
@@ -52,7 +65,7 @@ const ItemHistPedidos = (props) => {
                                 </tr>
                             )
                         })
-                    )
+                    ) 
                 }
             </tbody>
 

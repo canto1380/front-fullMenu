@@ -9,20 +9,12 @@
       "id": 1
     },
     {
-      "nombre": "Luis",
-      "apellido": "Perez",
+      "nombre": "Luis A.",
+      "apellido": "Perez ",
       "email": "akjsd@kjlads.com",
       "clave": "akljdkaksldjkl",
       "celular": "8765161651",
       "id": 3
-    },
-    {
-      "nombre": "Martin Jose",
-      "apellido": "Juarez",
-      "email": "asdasda@jhgk.com",
-      "clave": "asdasdasdasdas",
-      "celular": "4187474156",
-      "id": 4
     },
     {
       "nombre": "Lucas",
@@ -51,30 +43,33 @@
   "categorias": [
     {
       "nombreCategoria": "Comidas",
+      "destacada": false,
+      "publicada": false,
       "id": 14
     },
     {
       "nombreCategoria": "Ensaladas",
-      "id": 16
+      "destacada": false,
+      "publicada": false,
+      "id": 19
     },
     {
       "nombreCategoria": "Minutas",
-      "id": 17
+      "publicada": false,
+      "destacada": false,
+      "id": 21
+    },
+    {
+      "nombreCategoria": "Empanadas",
+      "destacada": false,
+      "id": 22
+    },
+    {
+      "nombreCategoria": "Bebidass",
+      "id": 23
     }
   ],
   "productos": [
-    {
-      "nombreProducto": "aaaaaaaaaanada",
-      "descripcion": "sssss",
-      "precio": "600",
-      "destacado": false,
-      "descuento": "20",
-      "categoria": "Ensaladas",
-      "foto": "cdsafdsfds",
-      "publicado": false,
-      "total": 60,
-      "id": 1
-    },
     {
       "nombreProducto": "Papas fritas",
       "descripcion": "Porcion de papas fritas",
