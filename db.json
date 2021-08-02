@@ -265,6 +265,42 @@
       "tipoPedido": "local"
     },
     {
+      "id": "599y2",
+      "idMesa": "1",
+      "idEncargado": "3",
+      "fecha": "02-08-2021",
+      "hora": "19:45",
+      "monto": 600,
+      "descuento": 10,
+      "total": 540,
+      "formaPago": "efectivo",
+      "tipoPedido": "local"
+    },
+    {
+      "id": "559y2",
+      "idMesa": "2",
+      "idEncargado": "3",
+      "fecha": "02-08-2021",
+      "hora": "20:45",
+      "monto": 1500,
+      "descuento": 10,
+      "total": 1350,
+      "formaPago": "efectivo",
+      "tipoPedido": "local"
+    },
+    {
+      "id": "569y2",
+      "idMesa": "1",
+      "idEncargado": "2",
+      "fecha": "02-08-2021",
+      "hora": "19:00",
+      "monto": 600,
+      "descuento": 0,
+      "total": 600,
+      "formaPago": "tarjeta",
+      "tipoPedido": "local"
+    },
+    {
       "id": "1qwf2",
       "idMesa": "1",
       "idEncargado": "2",
@@ -304,7 +340,7 @@
       "id": "189d2",
       "idMesa": "4",
       "idEncargado": "2",
-      "fecha": "18-05-2021",
+      "fecha": "02-08-2021",
       "hora": "21:45",
       "monto": 2500,
       "descuento": 10,

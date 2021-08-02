@@ -1,6 +1,18 @@
 .alineacionVertical{
     vertical-align:middle;
 }
+.puntoVerde{
+    background-color: green;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+.puntoAzul{
+    background-color: rgb(60, 60, 245);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
 
 @media(max-width: 768px){
     .margenTop{
@@ -9,6 +21,7 @@
 }
 @media print{
     @page{
+        
         margin: 0;
     }
     body{

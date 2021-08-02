@@ -1,8 +1,9 @@
 import React from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
-import SidebarCliente from '../SideBarCliente';
-import '../../css/sidebar.css'
-import BarraPrincipal from '../BarraPrincipal';
+import SidebarCliente from '../../SideBarCliente';
+import '../../../css/sidebar.css'
+import BarraPrincipal from '../../BarraPrincipal';
+import MetricaVtaDiaria from './MetricaVtaDiaria';
 
 const IndexClienteAdm = (props) => {
     const {inactivo, setInactivo} = props
@@ -22,12 +23,9 @@ const IndexClienteAdm = (props) => {
         </Row>
         <Row className="d-flex justify-content-between mx-0">
             <Col xs={12} md={6}>
-                <div className='border border-2 rounded'>
-                    <p><b>Venta total del dia</b></p>
-                    <div>
-                        
-                    </div>    
-                </div>
+                <MetricaVtaDiaria
+                    pedidos={props.pedidos}
+                />
             </Col>
             <Col xs={12} md={6}>
                 <div className='border border-2 rounded'>

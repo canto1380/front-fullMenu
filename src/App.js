@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import AdminPrincipal from './components/menu-admin/AdminPrincipal';
 import ClientePrincipal from './components/cliente-interfaces/ClientePrincipal';
 import AdminMenuCategoria from './components/menu-cliente/categorias/AdminMenuCategoria';
-import IndexClienteAdm from './components/menu-cliente/IndexClienteAdm';
+import IndexClienteAdm from './components/menu-cliente/homePage/IndexClienteAdm';
 import ProductosClienteAdm from './components/menu-cliente/productos/ProductosClienteAdm';
 import AgregarProducto from './components/menu-cliente/productos/AgregarProducto';
 import EditarProducto from './components/menu-cliente/productos/EditarProducto';
@@ -138,6 +138,7 @@ function App() {
           <IndexClienteAdm 
             inactivo={inactivo}
             setInactivo={setInactivo}
+            pedidos={pedidos}
             />
         </Route>
         <Route exact path='/admin-cliente/productos'>
