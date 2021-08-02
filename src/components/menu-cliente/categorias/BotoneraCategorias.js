@@ -117,6 +117,7 @@ const eliminarCategoria =(id)=>{
  /*PUBLICAR*/
  const publicarCategoria = async(id, nombre, publicada) =>{
   const url = `${URL}/categorias/${id}`
+  handleShow2();
   if(!publicada){
           try {
             console.log("categoria publicada")

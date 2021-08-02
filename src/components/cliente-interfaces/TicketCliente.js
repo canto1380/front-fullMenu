@@ -1,7 +1,8 @@
 import React from 'react';
 import {Card, Form, Button } from 'react-bootstrap';
 
-const TicketCliente = () => {
+const TicketCliente = (props) => {
+    const {pedido}=props;
     return (
         <Card className="tarjetas ticket text-dark my-3 border-4">
   <Card.Header as="h5" className="d-flex justify-content-between">
@@ -16,9 +17,15 @@ const TicketCliente = () => {
   </Card.Header>
   <Card.Body>
       <div className="d-flex justify-content-between">
-          <span>Empanadas</span>
-          <span>$$$$</span>
+          
+      <span>{pedido.detalle}</span>
+          <span>{pedido.prod}</span>
+          <span>${pedido.precio*pedido.detalle}</span>
       </div>
+
+      <div>  
+             
+            </div>
       <div className="d-flex justify-content-between">
           <span>Empanadas</span>
           <span>$$$$</span>

@@ -4,6 +4,7 @@ import CategoryIcon from '@material-ui/icons/Category';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 export const SidebarData =[
@@ -31,6 +32,11 @@ export const SidebarData =[
         tittle: "Pedidos",
         icon: <BorderColorIcon />,
         link:"/admin-cliente/pedidos"
+    },
+    {
+        tittle: "Menu",
+        icon: <MenuBookIcon />,
+        link:"/admin-cliente/menu"
     },
     {
         tittle: "Configuracion",

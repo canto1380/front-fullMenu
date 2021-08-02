@@ -13,6 +13,8 @@ import UsuariosAdmin from './components/menu-cliente/usuarios/UsuariosAdmin';
 import EditarUsuarioEncargado from './components/menu-cliente/usuarios/EditarUsuarioEncargado';
 import AgregarUsuarioEncargado from './components/menu-cliente/usuarios/AgregarUsuarioEncargado'
 import PedidosHistorial from './components/menu-cliente/pedidos/PedidosHistorial';
+import MenuCliente from './components/MenuCliente';
+import { FormatTextdirectionLToRSharp } from '@material-ui/icons';
 
 
 function App() {
@@ -24,14 +26,14 @@ function App() {
   const [categorias, setCategorias] = useState([]);
   const [consultarCat, setConsultarCat]= useState(true);
 
-  // let categoriasDestacadas = categorias.filter((cat) => cat.destacada);
-  // let cantDestacadas = categoriasDestacadas.length;
-
   //Productos
   const [productos, setProductos] = useState([]);
   const [consultarProductos, setConsultarProductos]= useState(true);
   //Sidebar
   const[inactivo, setInactivo] = useState(false)
+  //Pedidos
+  const [pedidos,setPedidos]=useState([]);
+  const [consultarPedidos, setConsultarPedidos]=useState(true);
 
   /***** Consultas API *****/
   //Categorias
@@ -98,6 +100,21 @@ function App() {
     }
   },[consultarUsuarios]);
 
+  //PEDIDOS
+  const consultarAPIpedidos = async ()=>{
+    const res = await fetch(process.env.REACT_APP_API_URL + "/pedidos");
+    const infoPedido= await res.json();
+    if(res.status===200){
+      setPedidos(infoPedido);
+      setConsultarPedidos(false);
+    }
+  }
+  useEffect(()=>{
+if(consultarPedidos){
+  consultarAPIpedidos();
+}
+  }, [consultarPedidos]);
+
   return (
     <Router>
       <Switch>
@@ -107,7 +124,16 @@ function App() {
         </Route>
         {/* Rutas Adm cliente */}
         <Route exact path='/cliente'>
-          <ClientePrincipal></ClientePrincipal>
+          <ClientePrincipal
+           inactivo={inactivo}
+           setInactivo={setInactivo}
+           productos={productos}
+           consultarProductos={consultarProductos}
+           setConsultarProductos={setConsultarProductos}
+           categorias={categorias}
+           consultarCat={consultarCat}
+           setConsultarCategorias={setConsultarCat}
+          />
         </Route>
         <Route exact path='/admin-cliente'>
           <IndexClienteAdm 
@@ -176,6 +202,18 @@ function App() {
           consultarCat={consultarCat} 
           setConsultarCat={setConsultarCat} 
           categorias={categorias}
+          />
+        </Route>
+        <Route exact path='/admin-cliente/menu'>
+          <MenuCliente
+          inactivo={inactivo}
+          setInactivo={setInactivo}
+          productos={productos}
+          consultarProductos={consultarProductos}
+          setConsultarProductos={setConsultarProductos}
+          categorias={categorias}
+          consultarCat={consultarCat}
+          setConsultarCategorias={setConsultarCat}
           />
         </Route>
       </Switch>
