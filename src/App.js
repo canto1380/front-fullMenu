@@ -13,12 +13,9 @@ import UsuariosAdmin from './components/menu-cliente/usuarios/UsuariosAdmin';
 import EditarUsuarioEncargado from './components/menu-cliente/usuarios/EditarUsuarioEncargado';
 import AgregarUsuarioEncargado from './components/menu-cliente/usuarios/AgregarUsuarioEncargado'
 import PedidosHistorial from './components/menu-cliente/pedidos/PedidosHistorial';
-<<<<<<< HEAD
 import MenuCliente from './components/MenuCliente';
 import { FormatTextdirectionLToRSharp } from '@material-ui/icons';
-=======
 import ImpresionPedido from './components/menu-cliente/pedidos/ImpresionPedido';
->>>>>>> c28c0ab4d7e9151105114b6c06fd3b2eeaefa889
 
 
 function App() {
@@ -107,22 +104,6 @@ function App() {
     }
   },[consultarUsuarios]);
 
-<<<<<<< HEAD
-  //PEDIDOS
-  const consultarAPIpedidos = async ()=>{
-    const res = await fetch(process.env.REACT_APP_API_URL + "/pedidos");
-    const infoPedido= await res.json();
-    if(res.status===200){
-      setPedidos(infoPedido);
-      setConsultarPedidos(false);
-    }
-  }
-  useEffect(()=>{
-if(consultarPedidos){
-  consultarAPIpedidos();
-}
-  }, [consultarPedidos]);
-=======
   //Pedidos
   const consultarAPIPedidos = async()=>{
     try {
@@ -143,7 +124,6 @@ if(consultarPedidos){
       consultarAPIPedidos();
     }
   },[consultarUsuarios]);
->>>>>>> c28c0ab4d7e9151105114b6c06fd3b2eeaefa889
 
   return (
     <Router>

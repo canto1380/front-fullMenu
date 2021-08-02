@@ -42,15 +42,6 @@
   ],
   "categorias": [
     {
-<<<<<<< HEAD
-=======
-      "nombreCategoria": "Comidas",
-      "destacada": false,
-      "publicada": false,
-      "id": 14
-    },
-    {
->>>>>>> c28c0ab4d7e9151105114b6c06fd3b2eeaefa889
       "nombreCategoria": "Ensaladas",
       "destacada": false,
       "publicada": false,
@@ -68,13 +59,9 @@
       "id": 22
     },
     {
-<<<<<<< HEAD
       "nombreCategoria": "Postres",
       "publicada": false,
       "destacada": false,
-=======
-      "nombreCategoria": "Bebidass",
->>>>>>> c28c0ab4d7e9151105114b6c06fd3b2eeaefa889
       "id": 23
     }
   ],
