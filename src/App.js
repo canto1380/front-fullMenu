@@ -35,9 +35,6 @@ function App() {
   const [consultarPedidos, setConsultarPedidos]= useState(true);
   //Sidebar
   const[inactivo, setInactivo] = useState(false)
-  //Pedidos
-  const [pedidos,setPedidos]=useState([]);
-  const [consultarPedidos, setConsultarPedidos]=useState(true);
 
   /***** Consultas API *****/
   //Categorias
