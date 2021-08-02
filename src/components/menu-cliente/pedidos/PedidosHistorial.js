@@ -7,11 +7,23 @@ import FiltrosPedidos from './filtrosPedidos/FiltrosPedidos';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const PedidosHistorial = (props) => {
-    const { inactivo, setInactivo } = props
+    const { inactivo, setInactivo, pedidos } = props
     const [filtros, setFiltros] = useState(false)
     const[filtradoEncargado, setFiltradoEncargado] = useState([])
-    console.log(filtradoEncargado)
+    const [buscador, setBuscador] = useState('')
+    const [filtradoBuscador, setFiltradoBuscador]=useState([])
 
+    const valorBuscador =(e) =>{
+        setBuscador(e.target.value)
+    }
+    const filtrar =() =>{
+        let filtroBuscador = pedidos.filter((item)=>{
+            if(item.id.includes(buscador.toLowerCase())){
+                return item
+            }
+        });
+        setFiltradoBuscador(filtroBuscador)
+    }
     return (
         <Container fluid className='app p-0 text-dark d-flex justify-content-start'>
             <SideBarCliente
@@ -32,15 +44,15 @@ const PedidosHistorial = (props) => {
                         </Button>
                     </Col>
                     <Col xs={9} sm={6} md={4} className=''>
-                        <Form.Group className="mb-0 d-flex">
-                            <select className="form-select" aria-label="Default select example">
-                                <option>Ordenar por</option>
-                                <option>Mas recientes</option>
-                                <option>Menos recientes</option>
-                                <option>Mayor precio</option>
-                                <option>Menor precio</option>
-                            </select>
-                        </Form.Group>
+                    <form className="d-flex">
+                            <Form.Control 
+                                size="sm" 
+                                onChange={valorBuscador} 
+                                onKeyUp={filtrar}
+                                type="search" 
+                                placeholder="N° pedido"
+                            />
+                        </form>
                     </Col>
                 </Row>
                 <Form className=''>
@@ -49,7 +61,13 @@ const PedidosHistorial = (props) => {
                     }
                 </Form>
                 <div>
-                    <ItemHistPedidos />
+                    {
+                        <ItemHistPedidos 
+                        pedidos={pedidos}
+                        filtradoBuscador={filtradoBuscador}
+                        buscador={buscador}
+                    />
+                    }
                 </div>
             </div>
         </Container>

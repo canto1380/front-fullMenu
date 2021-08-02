@@ -7,3 +7,17 @@
        margin-top: 7px; 
     }
 }
+@media print{
+    @page{
+        margin: 0;
+    }
+    body{
+        margin: 2cm;
+    }
+    .sidebar{
+        visibility: hidden;
+    }
+    .ass{
+        visibility: hidden;
+    }
+}

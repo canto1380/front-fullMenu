@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, withRouter, useParams } from "react-router-dom";
 
 import { Container, Button, Row, Col, Form } from 'react-bootstrap';
@@ -8,38 +8,38 @@ import Swal from "sweetalert2";
 
 
 const EditarProducto = (props) => {
-    const {inactivo, setInactivo, categorias} = props
-    const {id} = useParams()
+    const { inactivo, setInactivo, categorias, setConsultarProductos } = props
+    const { id } = useParams()
 
     const [producto, setProducto] = useState({
         nombreProducto: "",
         descripcion: "",
         categoria: "",
-        precio: "",
-        descuento: "",
+        precio: '',
+        descuento: '',
         foto: "",
         publicado: ''
     })
 
-    useEffect(()=>{
-        const consultarProducto = async () =>{
+    useEffect(() => {
+        const consultarProducto = async () => {
             try {
                 const res = await fetch(
-                    process.env.REACT_APP_API_URL+"/productos/" +id
-                    )
-                    if(res.status === 200){
-                        const resp = await res.json()
-                        setProducto(resp)
-                    }
+                    process.env.REACT_APP_API_URL + "/productos/" + id
+                )
+                if (res.status === 200) {
+                    const resp = await res.json()
+                    setProducto(resp)
+                }
             } catch (error) {
                 console.log(error)
             }
         }
         consultarProducto()
-    },[id])
+    }, [id])
     console.log(producto)
 
-    const [total,setTotal]= useState('')
+    const [total, setTotal] = useState('')
     /** State Validaciones de feed */
     const [prodValid, setProdValid] = useState("");
     const [prodInvalid, setProdInvalid] = useState("");
@@ -65,7 +65,8 @@ const EditarProducto = (props) => {
         descrip: /^[^\n]{0,100}$/,
         cat: /^[^\n]{0,30}$/,
         pre: /^[0-9]{1,4}$/,
-        desc: /^[0-9]{0,2}$/
+        desc: /^[0-9]{0,2}$/,
+        tot: /^\w{1,2}/
     }
     const scrollToTop = () => {
         window.scrollTo({
@@ -90,7 +91,7 @@ const EditarProducto = (props) => {
         setDescripValid('')
         setDescripInvalid('')
         const d = expresiones.descrip
-        if ( d.test(producto.descripcion)) {
+        if (d.test(producto.descripcion)) {
             setDescripValid(true)
             return false
         } else {
@@ -114,7 +115,7 @@ const EditarProducto = (props) => {
         setPrecioValid('')
         setPrecioInvalid('')
         const p = expresiones.pre
-        if (producto.precio.trim() !== '' && p.test(producto.precio)) {
+        if (producto.precio !== '' && p.test(producto.precio)) {
             setPrecioValid(true)
             return false
         } else {
@@ -146,12 +147,61 @@ const EditarProducto = (props) => {
             return true
         }
     }
-    
+
     const handleValores = (e) => {
         setProducto({ ...producto, [e.target.name]: e.target.value })
     };
-    const handleSubmit =(e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        if (validacionProd(producto.nombreProducto) || validacionDescrip(producto.descripcion) || validacionCategoria(producto.categoria) || validacionPrecio(producto.precio) || validacionDesc(producto.descuento) || validacionTotal(total)) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: 'Producto no modificado'
+            })
+        } else {
+            console.log(producto)
+            const url = process.env.REACT_APP_API_URL + '/productos/' + id;
+            const res = await fetch(
+                url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(producto)
+            })
+            if (res.status === 200) {
+                console.log(res);
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Producto agregado'
+                })
+                setConsultarProductos(true)
+                props.history.push('/admin-cliente/productos')
+            }
+        }
     }
 
     return (
@@ -160,8 +210,8 @@ const EditarProducto = (props) => {
                 inactivo={inactivo}
                 setInactivo={setInactivo}
             />
-            <div className={`${inactivo ? 'parte2-inactivo': 'parte2'}`}>
-                <BarraPrincipal/>
+            <div className={`${inactivo ? 'parte2-inactivo' : 'parte2'}`}>
+                <BarraPrincipal />
                 <div className='px-5'>
                     <h3>Editar producto</h3>
                     <Form onSubmit={handleSubmit}>
@@ -178,14 +228,14 @@ const EditarProducto = (props) => {
                                 isInvalid={prodInvalid}
                                 defaultValue={producto.nombreProducto}
                                 onChange={handleValores}
-                                />
-                        <Form.Control.Feedback
-                            type="invalid"
-                            className="text-danger "
+                            />
+                            <Form.Control.Feedback
+                                type="invalid"
+                                className="text-danger "
                             >
-                            Campo Obligatorio. Entre 8 y 20 caracteres.
-                        </Form.Control.Feedback>
-                            </Form.Group>
+                                Campo Obligatorio. Entre 8 y 20 caracteres.
+                            </Form.Control.Feedback>
+                        </Form.Group>
 
                         <Form.Group className="">
                             <Form.Label>
@@ -208,22 +258,22 @@ const EditarProducto = (props) => {
                             <Form.Control.Feedback
                                 type="invalid"
                                 className="text-danger small">
-                                    Maximo de 100 caracteres
+                                Maximo de 100 caracteres
                             </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>
                                 <b>Categoria</b>
                             </Form.Label>
-                           
+
                             <Form.Group className='mb-0 d-flex'>
                                 <select
-                                    className='form-select' 
+                                    className='form-select'
                                     onChange={handleValores}
-                                    name="categoria" 
+                                    name="categoria"
                                     defaultValue={producto.categoria}
-                                    >
-                                    {categorias.map((cat)=>(
+                                >
+                                    {categorias.map((cat) => (
                                         <option key={cat.id}>{cat.nombreCategoria}</option>
                                     ))}
                                 </select>
@@ -235,7 +285,7 @@ const EditarProducto = (props) => {
                                     <b>Precio</b>
                                 </Form.Label>
                                 <Form.Control
-                                    type="number"
+                                    type="tel"
                                     onBlur={validacionPrecio}
                                     isValid={precioValid}
                                     isInvalid={precioInvalid}
@@ -244,12 +294,12 @@ const EditarProducto = (props) => {
                                     defaultValue={producto.precio}
                                     name='precio'
                                     onChange={handleValores} />
-                                    <Form.Control.Feedback
-                            type="invalid"
-                            className="text-danger "
-                            >
-                            Campo obligatorio.
-                        </Form.Control.Feedback>
+                                <Form.Control.Feedback
+                                    type="invalid"
+                                    className="text-danger "
+                                >
+                                    Campo obligatorio.
+                                </Form.Control.Feedback>
                             </Form.Group>
 
                             <Form.Group as={Col} xs={12} md={6} lg={4} className="mb-3" controlId="formBasicEmail">
@@ -257,7 +307,7 @@ const EditarProducto = (props) => {
                                     <b>Descuento</b>
                                 </Form.Label>
                                 <Form.Control
-                                    type="number"
+                                    type="tel"
                                     name='descuento'
                                     onBlur={validacionDesc}
                                     isValid={descValid}
@@ -274,14 +324,14 @@ const EditarProducto = (props) => {
                                     <b>Total</b>
                                 </Form.Label>
                                 <Form.Control
-                                    type="number"
+                                    type="tel"
                                     readOnly
                                     onBlur={validacionTotal}
                                     isValid={totalValid}
                                     isInvalid={totalInvalid}
-                                    value={producto.precio-(producto.precio * producto.descuento)/100}
-                                    onSelect={(e) => setTotal(producto.precio-(producto.precio * producto.descuento)/100)}
-                                    />
+                                    value={producto.precio - (producto.precio * producto.descuento) / 100}
+                                    onSelect={(e) => setTotal(producto.precio - (producto.precio * producto.descuento) / 100)}
+                                />
                                 <Form.Text className="text-muted">
                                     Precio total con descuento
                                 </Form.Text>
@@ -317,8 +367,8 @@ const EditarProducto = (props) => {
                     </Form>
                 </div>
             </div>
-                
-            
+
+
         </Container>
     );
 };

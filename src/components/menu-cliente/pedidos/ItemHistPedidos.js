@@ -1,52 +1,75 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Table } from 'react-bootstrap';
 import BotoneraPedidos from './BotoneraPedidos';
 
-const ItemHistPedidos = () => {
+const ItemHistPedidos = (props) => {
+    const { pedidos, filtradoBuscador, buscador } = props
+    const [msj, setMsj] = useState('Sin coincidencia')
+    const {bandera, setBandera} = useState(false)
 
-    const pedidosData =[
-        {
-            nPedido:"15321", Encargado:"Pablo Paz", Fecha:"15/05/2021",monto:1688
-        },
-        {
-            nPedido:"15322",Encargado:"Paula Perez", Fecha:"05/10/2021", monto:2569
-        },
-        {
-            nPedido:"15322", Encargado:"Pablo Paz", Fecha:"15/08/2020", monto:759
-        },
-        {
-            nPedido:"15323", Encargado:"Paula Perez", Fecha:"16/05/2021", monto:2389
-        },
-        {
-            nPedido:"15324", Encargado:"Paula Perez",Fecha:"23/11/2021", monto:3699
-        }
-    ]
+
     return (
-            <Table responsive striped bordered hover size="sm">
-                <thead>
-                    <tr>
-                        <td className='mb-0'><b>N° Pedido</b></td>
-                        <td>Encargado</td>
-                        <td>Fecha</td>
-                        <td>Monto</td>
-                        <td>Acciones</td>
-                    </tr>
-                </thead>
-                <tbody>
-                {pedidosData.map((val, key)=>{
-                    return(
-                        <tr key={key}>
-                            <td>{val.nPedido}</td>
-                            <td>{val.Encargado}</td>
-                            <td>{val.Fecha}</td>
-                            <td>{val.monto}</td>
-                            <td className='text-end'><BotoneraPedidos/></td>
-                        </tr>
-                    )   
-                })}
-                </tbody>
-                
-            </Table>
+        <Table responsive striped bordered hover size="sm">
+            <thead>
+                <tr>
+                    <td className='mb-0'><b>N° Pedido</b></td>
+                    <td><b>Encargado</b></td>
+                    <td><b>Mesa</b></td>
+                    <td><b>Fecha</b></td>
+                    <td><b>Total</b></td>
+                    <td><b>Acciones</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    (filtradoBuscador.length === 0 && buscador === "" ) ?(
+                        pedidos.map((val, key) => (
+                            
+                                <tr key={key}>
+                                    <td className="alineacionVertical">{val.id}</td>
+                                    <td className="alineacionVertical">{val.idEncargado}</td>
+                                    <td className="alineacionVertical">{val.idMesa}</td>
+                                    <td className="alineacionVertical">{val.fecha}</td>
+                                    <td className="alineacionVertical">${val.total}</td>
+                                    <td className='text-end'>
+                                        <BotoneraPedidos
+                                            pedidos={val}
+                                        />
+                                    </td>
+                                </tr>
+                        ))
+                    )
+                    :(filtradoBuscador.length === 0 && buscador !== "") ?(
+                            <tr className='border border-0'>
+                                <td className='border border-0'>
+                                    <span>Sin coincidencias..</span>
+                                </td>
+                            </tr>
+                        ):(
+                            
+
+                    
+                        filtradoBuscador.map((val, key) => {
+                            return (
+                                <tr key={key}>
+                                    <td className="alineacionVertical">{val.id}</td>
+                                    <td className="alineacionVertical">{val.idEncargado}</td>
+                                    <td className="alineacionVertical">{val.idMesa}</td>
+                                    <td className="alineacionVertical">{val.fecha}</td>
+                                    <td className="alineacionVertical">${val.total}</td>
+                                    <td className='text-end'>
+                                        <BotoneraPedidos
+                                            pedidos={val}
+                                        />
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    ) 
+                }
+            </tbody>
+
+        </Table>
     );
 };
 

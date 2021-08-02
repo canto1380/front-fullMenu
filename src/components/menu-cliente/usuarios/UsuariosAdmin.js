@@ -7,6 +7,7 @@ import ItemUsuarios from './ItemUsuarios';
 
 const UsuariosAdmin = (props) => {
     const {inactivo, setInactivo, usuarios, consultarUsuarios, setConsultarUsuarios} = props;
+    console.log(usuarios)
     return (
         <Container fluid className='app p-0 text-dark d-flex justify-content-start'>
             <SidebarCliente
