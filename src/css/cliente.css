@@ -1,6 +1,6 @@
  .nav{
     background: rgb(8, 8, 8);
-
+    
     
 } 
 .fondo{
@@ -8,7 +8,12 @@
     background-image: url("../img/empa.jpg");
   background-attachment: fixed;
   overflow: scroll;
+
 }
+.fondo::-webkit-scrollbar {
+    display: none;
+}
+
 .box{
     border-radius: 2px;
 }

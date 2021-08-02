@@ -42,12 +42,6 @@
   ],
   "categorias": [
     {
-      "nombreCategoria": "Comidas",
-      "destacada": false,
-      "publicada": false,
-      "id": 14
-    },
-    {
       "nombreCategoria": "Ensaladas",
       "destacada": false,
       "publicada": false,
@@ -55,8 +49,8 @@
     },
     {
       "nombreCategoria": "Minutas",
-      "publicada": false,
       "destacada": false,
+      "publicada": false,
       "id": 21
     },
     {
@@ -65,7 +59,9 @@
       "id": 22
     },
     {
-      "nombreCategoria": "Bebidass",
+      "nombreCategoria": "Postres",
+      "publicada": false,
+      "destacada": false,
       "id": 23
     }
   ],
@@ -249,6 +245,18 @@
       "publicado": true,
       "destacado": false,
       "id": 27
+    },
+    {
+      "nombreProducto": "Frutilllas con crema",
+      "descripcion": "empanada jamon y queso",
+      "categoria": "Postres",
+      "precio": "150",
+      "descuento": 0,
+      "total": 150,
+      "foto": "",
+      "publicado": true,
+      "destacado": false,
+      "id": 28
     }
   ],
   "pedidos": [
@@ -260,6 +268,7 @@
       "hora": "19:45",
       "monto": 700,
       "descuento": 0,
+      "detalle" : "",
       "total": 700,
       "formaPago": "efectivo",
       "tipoPedido": "local"
